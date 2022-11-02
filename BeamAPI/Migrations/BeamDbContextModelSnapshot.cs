@@ -42,28 +42,6 @@ namespace BeamAPI.Migrations
                     b.ToTable("Beams");
                 });
 
-            modelBuilder.Entity("BeamAPI.Models.BeamType", b =>
-                {
-                    b.Property<int>("BeamTypeId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("BeamId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TypeId")
-                        .HasColumnType("int");
-
-                    b.HasKey("BeamTypeId");
-
-                    b.HasIndex("BeamId");
-
-                    b.HasIndex("TypeId");
-
-                    b.ToTable("BeamTypes");
-                });
-
             modelBuilder.Entity("BeamAPI.Models.Type", b =>
                 {
                     b.Property<int>("TypeId")
@@ -71,8 +49,8 @@ namespace BeamAPI.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("ForceType")
-                        .HasColumnType("nvarchar(100)");
+                    b.Property<int>("BeamId")
+                        .HasColumnType("int");
 
                     b.Property<decimal>("Fy")
                         .HasColumnType("decimal(18,2)");
@@ -104,71 +82,31 @@ namespace BeamAPI.Migrations
                     b.Property<decimal>("Xm")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<decimal>("Xp")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<string>("Xp")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("TypeId");
+
+                    b.HasIndex("BeamId");
 
                     b.ToTable("Types");
                 });
 
-            modelBuilder.Entity("BeamType", b =>
-                {
-                    b.Property<int>("BeamsBeamId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TypesTypeId")
-                        .HasColumnType("int");
-
-                    b.HasKey("BeamsBeamId", "TypesTypeId");
-
-                    b.HasIndex("TypesTypeId");
-
-                    b.ToTable("BeamType");
-                });
-
-            modelBuilder.Entity("BeamAPI.Models.BeamType", b =>
+            modelBuilder.Entity("BeamAPI.Models.Type", b =>
                 {
                     b.HasOne("BeamAPI.Models.Beam", "Beam")
-                        .WithMany("BeamTypes")
+                        .WithMany("Types")
                         .HasForeignKey("BeamId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BeamAPI.Models.Type", "Type")
-                        .WithMany("BeamTypes")
-                        .HasForeignKey("TypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Beam");
-
-                    b.Navigation("Type");
-                });
-
-            modelBuilder.Entity("BeamType", b =>
-                {
-                    b.HasOne("BeamAPI.Models.Beam", null)
-                        .WithMany()
-                        .HasForeignKey("BeamsBeamId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("BeamAPI.Models.Type", null)
-                        .WithMany()
-                        .HasForeignKey("TypesTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("BeamAPI.Models.Beam", b =>
                 {
-                    b.Navigation("BeamTypes");
-                });
-
-            modelBuilder.Entity("BeamAPI.Models.Type", b =>
-                {
-                    b.Navigation("BeamTypes");
+                    b.Navigation("Types");
                 });
 #pragma warning restore 612, 618
         }

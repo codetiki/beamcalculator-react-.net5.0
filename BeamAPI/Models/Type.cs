@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace BeamAPI.Models
@@ -12,8 +13,6 @@ namespace BeamAPI.Models
         [Key]
         public int TypeId { get; set; }
         [Column(TypeName = "nvarchar(100)")]
-        public string ForceType { get; set; }
-
         public decimal Xp { get; set; }
         public decimal Fy { get; set; }
         public decimal Xm { get; set; }
@@ -25,9 +24,9 @@ namespace BeamAPI.Models
         public decimal XEndLDL { get; set; }
         public decimal Fy_StartLDL { get; set; }
         public decimal Fy_EndLDL { get; set; }
-
-        public ICollection<Beam> Beams { get; set; }
-        public List<BeamType> BeamTypes { get; set; }
-
+        public int BeamId { get; set; }
+        [JsonIgnore]
+        public Beam Beam { get; set; }
+ 
     }
 }

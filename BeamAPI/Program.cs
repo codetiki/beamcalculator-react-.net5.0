@@ -1,4 +1,6 @@
+using BeamAPI.Models;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -13,7 +15,11 @@ namespace BeamAPI
     {
         public static void Main(string[] args)
         {
+          
+
             CreateHostBuilder(args).Build().Run();
+
+            
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

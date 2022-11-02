@@ -10,11 +10,11 @@ namespace BeamAPI.Models
     {
         public BeamDbContext(DbContextOptions<BeamDbContext> options):base(options)
         {
-            
         }
+ 
         public DbSet<Beam> Beams { get; set; }
         public DbSet<Type> Types { get; set; }
-        public DbSet<BeamType> BeamTypes { get; set; }
+
 
     }
 }

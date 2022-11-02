@@ -18,8 +18,7 @@ namespace BeamAPI.Models
         public decimal A { get; set; }
         public decimal B { get; set; }
 
-        public ICollection<Type> Types { get; set; }
-        public List<BeamType> BeamTypes { get; set; }
+        public IList<Type> Types { get; set; }
 
     }
 }

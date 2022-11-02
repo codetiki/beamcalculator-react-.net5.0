@@ -64,10 +64,12 @@ const BeamUI = () => {
     console.log("target 1", target)
     useEffect(() => {
         if (formData.span !== "0" && formData.B !== "0" &&
-            ((formData.fy1 !== "0") ||
-                (formData.m1 !== "0") ||
-                (formData.xEndUDL1 !== "0" && formData.fyUDL1 !== "0") ||
-                (formData.xEndLDL1 !== "0" && (formData.fy_StartLDL1 !== "0" || formData.fy_EndLDL1 !== "0")))) {
+            ((formData.fy1 !== "0" && formData.fy1 !== "-" && formData.fy1 !== "+" && formData.fy1.length !== 0) ||
+                (formData.m1 !== "0" && formData.m1 !== "-" && formData.m1 !== "+" && formData.m1.length !== 0) ||
+                (formData.xEndUDL1 !== "0" && formData.fyUDL1 !== "0" && formData.fyUDL1 !== "-" && formData.fyUDL1 !== "+" && formData.fyUDL1.length !== 0) ||
+                (formData.xEndLDL1 !== "0" &&
+                    ((formData.fy_StartLDL1 !== "0" || formData.fy_EndLDL1 !== "0") && (formData.fy_StartLDL1 !== "-" && formData.fy_StartLDL1 !== "+" && formData.fy_StartLDL1.length !== 0) &&
+                        (formData.fy_EndLDL1 !== "-" && formData.fy_EndLDL1 !== "+" && formData.fy_EndLDL1.length !== 0))))) {
             setShowResultButton(true);
         }
         else {
