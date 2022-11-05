@@ -14,6 +14,7 @@ namespace BeamAPI.Models
  
         public DbSet<Beam> Beams { get; set; }
         public DbSet<Type> Types { get; set; }
+        public DbSet<ForceType> ForceTypes { get; set; }
 
 
     }

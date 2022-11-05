@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BeamAPI.Migrations
 {
     [DbContext(typeof(BeamDbContext))]
-    [Migration("20221101115512_Initial Create")]
+    [Migration("20221104111645_Initial Create")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,15 +33,48 @@ namespace BeamAPI.Migrations
                     b.Property<decimal>("B")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<string>("BeamDefinition")
+                        .HasColumnType("nvarchar(200)");
+
                     b.Property<string>("BeamName")
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<decimal>("Mmax")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("Mmin")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("Span")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("Vmax")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("Vmin")
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("BeamId");
 
                     b.ToTable("Beams");
+                });
+
+            modelBuilder.Entity("BeamAPI.Models.ForceType", b =>
+                {
+                    b.Property<int>("ForceTypeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ForceTypeDefinition")
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("ForceTypeName")
+                        .HasColumnType("nvarchar(200)");
+
+                    b.HasKey("ForceTypeId");
+
+                    b.ToTable("ForceTypes");
                 });
 
             modelBuilder.Entity("BeamAPI.Models.Type", b =>
@@ -50,6 +83,9 @@ namespace BeamAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("BeamDefinition")
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<int>("BeamId")
                         .HasColumnType("int");
@@ -84,9 +120,8 @@ namespace BeamAPI.Migrations
                     b.Property<decimal>("Xm")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("Xp")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)");
+                    b.Property<decimal>("Xp")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("TypeId");
 

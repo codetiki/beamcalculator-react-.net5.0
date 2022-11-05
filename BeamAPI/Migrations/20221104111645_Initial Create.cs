@@ -12,14 +12,33 @@ namespace BeamAPI.Migrations
                 {
                     BeamId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    BeamName = table.Column<string>(type: "nvarchar(100)", nullable: true),
+                    BeamName = table.Column<string>(type: "nvarchar(200)", nullable: true),
+                    BeamDefinition = table.Column<string>(type: "nvarchar(200)", nullable: true),
                     Span = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     A = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    B = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                    B = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Vmax = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Vmin = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Mmax = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Mmin = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Beams", x => x.BeamId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ForceTypes",
+                columns: table => new
+                {
+                    ForceTypeId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ForceTypeName = table.Column<string>(type: "nvarchar(200)", nullable: true),
+                    ForceTypeDefinition = table.Column<string>(type: "nvarchar(200)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ForceTypes", x => x.ForceTypeId);
                 });
 
             migrationBuilder.CreateTable(
@@ -28,7 +47,8 @@ namespace BeamAPI.Migrations
                 {
                     TypeId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Xp = table.Column<string>(type: "nvarchar(100)", nullable: false),
+                    BeamDefinition = table.Column<string>(type: "nvarchar(200)", nullable: true),
+                    Xp = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Fy = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Xm = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     M = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
@@ -60,6 +80,9 @@ namespace BeamAPI.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "ForceTypes");
+
             migrationBuilder.DropTable(
                 name: "Types");
 

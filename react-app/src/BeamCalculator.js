@@ -635,7 +635,7 @@ const BeamCalculator = (props) => {
                     null
             }
             {
-                showResultButton ?
+                (showResultButton && !formData.check) ?
                     <button type="button" class="btn btn-primary" onClick={CalculateShearForce}>Laske tulos</button>
                     :
                     null

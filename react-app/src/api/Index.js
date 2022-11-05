@@ -4,7 +4,8 @@ const BASE_URL = 'http://localhost:13897/api/';
 
 export const ENDPOINTS = {
     BEAM: 'Beam',
-    TYPE: 'Type'
+    TYPE: 'Type',
+    FORCETYPE: 'ForceType'
 }
 
 export const createAPIEndpoint = endpoint => {

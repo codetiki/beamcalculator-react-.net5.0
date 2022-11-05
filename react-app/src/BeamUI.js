@@ -1,6 +1,11 @@
 import React, { useState, useEffect, Component, useContext } from 'react';
+import axios from 'axios';
+import { createAPIEndpoint, ENDPOINTS } from "./api/Index";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import BeamCalculator from './BeamCalculator';
+import { Select } from "./control/Select";
+import Box from '@mui/material/Box';
+import ResultList from './ResultList';
 
 
 // import images from local
@@ -11,9 +16,23 @@ import img3 from './images/distributedLoadWithSupport.png';
 import img4 from './images/linearLoadWithSupport.png';
 
 
+const getFreshModelObject = () => ({
+    beamId: 0,
+    beamName: "",
+    beamDefinition: "",
+    span: 0,
+    a: 0,
+    b: 0,
+    types: []
+})
+
+
 const BeamUI = () => {
 
     // const { CalculateShearForce } = useContext(BeamContext);
+    const [values, setValues] = useState(getFreshModelObject());
+    const [forceTypeList, setForceTypeList] = useState([]);
+    const [updateResult, setUpdateResult] = useState(false);
 
     const [forceType, setForceType] = useState("");
     const [pointLoadCount, setPointLoadCount] = useState(1);
@@ -23,6 +42,7 @@ const BeamUI = () => {
 
     const [formData, setFormData] = useState({
         "name": "",
+        "definition": "",
         "span": "0",
         "A": "0",
         "B": "0",
@@ -54,6 +74,20 @@ const BeamUI = () => {
     const [showLoadsValues, setShowLoadsValues] = useState(false);
     let buttonBeamText = showBeamValues ? "Palkki ja tuet OFF" : "Palkki ja tuet ON";
     let buttonLoadsText = showLoadsValues ? "Kuormat OFF" : "Kuormat ON";
+
+    // Haetaan Backendistä API
+    useEffect(() => {
+        createAPIEndpoint(ENDPOINTS.FORCETYPE).fetchAll()
+            .then(res => {
+                let forceTypeList = res.data.map(item => ({
+                    id: item.forceTypeId,
+                    title: item.forceTypeName
+                }));
+                forceTypeList = [{ id: 0, title: 'Select' }].concat(forceTypeList);
+                setForceTypeList(forceTypeList);
+            })
+            .catch(err => console.log(err))
+    }, [])
 
     // Kopioidaan formData-objekti. Luodaan tyhjä formData-objekti "target"
     function bestCopyEver(src) {
@@ -99,7 +133,40 @@ const BeamUI = () => {
         setShowLoadsValues(!showLoadsValues);
     }
 
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setValues({
+            ...values,
+            [name]: value
+        });
+        setForceType(forceTypeList[value].title);
+        console.log("handleInputChange e.target", e.target);
+        console.log("forceTypeList[value].title", forceTypeList[value].title);
+    }
 
+    const onCreateBeam = () => {
+        console.log("formData", formData)
+        const postData = {
+            "beamName": formData.name,
+            "beamDefinition": formData.definition,
+            "span": formData.span,
+            "A": formData.A,
+            "B": formData.B,
+            "vmax": results.Vmax,
+            "vmin": results.Vmin,
+            "mmax": results.Mmax,
+            "mmin": results.Mmin
+        }
+
+        // axios.post(url, postData,)
+        createAPIEndpoint(ENDPOINTS.BEAM).create(postData)
+            .then((response) => {
+                console.log("response", response);
+                setUpdateResult(true);
+            });
+
+
+    }
 
 
     return (
@@ -117,6 +184,7 @@ const BeamUI = () => {
                                         setFormData({
                                             ...formData,
                                             name: "",
+                                            definition: "",
                                             span: "0",
                                             A: "0",
                                             B: "0",
@@ -165,7 +233,7 @@ const BeamUI = () => {
                                             <button
                                                 type="button"
                                                 class="btn btn-success mb-3"
-
+                                                onClick={onCreateBeam}
                                             >Tallenna tulos</button>
                                         </div>
                                     </>
@@ -188,7 +256,22 @@ const BeamUI = () => {
                                                 placeholder='Nimi...'
                                                 onChange={(e) => {
                                                     setFormData({ ...formData, name: e.target.value });
-
+                                                    setValues({ ...values, beamName: e.target.value });
+                                                    console.log("beamName: e.target.value", e.target.value)
+                                                }}
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-2 col-form-label">Palkin kuvaus:</label>
+                                        <div class="col-sm-6">
+                                            <input
+                                                type="text"
+                                                class="form-control"
+                                                placeholder='Kuvaus...'
+                                                onChange={(e) => {
+                                                    setFormData({ ...formData, definition: e.target.value });
+                                                    setValues({ ...values, beamDefinition: e.target.value });
                                                 }}
                                             />
                                         </div>
@@ -209,7 +292,7 @@ const BeamUI = () => {
                                                 value={formData.span}
                                                 onChange={(e) => {
                                                     setFormData({ ...formData, span: e.target.value, changed: false, check: false });
-
+                                                    setValues({ ...values, span: e.target.value });
                                                 }} />
 
                                         </div>
@@ -226,6 +309,7 @@ const BeamUI = () => {
                                                 value={formData.A}
                                                 onChange={(e) => {
                                                     setFormData({ ...formData, A: e.target.value, changed: false, check: false });
+                                                    setValues({ ...values, a: e.target.value });
                                                 }}
                                             />
                                         </div>
@@ -239,6 +323,7 @@ const BeamUI = () => {
                                                 value={formData.B}
                                                 onChange={(e) => {
                                                     setFormData({ ...formData, B: e.target.value, changed: false, check: false });
+                                                    setValues({ ...values, b: e.target.value });
                                                 }}
                                             />
                                         </div>
@@ -257,16 +342,32 @@ const BeamUI = () => {
                                 <>
                                     <label class="col-sm-12">Kuormatyyppi:</label>
                                     <div class="col-sm-6">
-                                        <select class="form-select" aria-label="Default select example" value={forceType} onChange={(e) => {
-                                            setFormData({ ...formData, type: e.target.value });
-                                            setForceType(e.target.value);
-                                        }}>
+                                        <Box sx={{ minWidth: 300 }}>
+                                            <Select
+                                                label="ForceType"
+                                                name="forceTypeId"
+                                                value={values.forceTypeId ? values.forceTypeId : " "}
+                                                onChange={handleInputChange}
+                                                options={forceTypeList}
+
+                                            />
+                                        </Box>
+                                        {/* <select
+                                            class="form-select"
+                                            aria-label="Default select example"
+                                            name=''
+                                            value={forceType}
+                                            onChange={(e) => {
+                                                setFormData({ ...formData, type: e.target.value });
+                                                setForceType(e.target.value);
+                                            }}
+                                        >
                                             <option value={0} key={0}>--Choise--</option>
                                             <option value={"PL"} key={1}>PointLoad</option>
                                             <option value={"PM"} key={2}>MomentLoad</option>
                                             <option value={"UDL"} key={3}>DistributedLoad</option>
                                             <option value={"LDL"} key={4}>LinearLoad</option>
-                                        </select>
+                                        </select> */}
                                     </div>
 
 
@@ -1065,6 +1166,14 @@ const BeamUI = () => {
                             setShowResultButton={setShowResultButton}
                         />
                     </div>
+                    <ResultList
+                        formData={formData}
+                        setFormData={setFormData}
+                        updateResult={updateResult}
+                        setUpdateResult={setUpdateResult}
+                        results={results}
+                        setResults={setResults}
+                    />
                 </div>
             </div>
         </div >

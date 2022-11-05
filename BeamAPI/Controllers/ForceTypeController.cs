@@ -11,50 +11,47 @@ namespace BeamAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BeamController : ControllerBase
+    public class ForceTypeController : ControllerBase
     {
         private readonly BeamDbContext _context;
 
-        public BeamController(BeamDbContext context)
+        public ForceTypeController(BeamDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/Beam
+        // GET: api/ForceType
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Beam>>> GetBeams()
+        public async Task<ActionResult<IEnumerable<ForceType>>> GetForceTypes()
         {
-            var newbeam = await _context.Beams
-                .Include(blog => blog.Types)
-                .ToListAsync();
-            return newbeam;
+            return await _context.ForceTypes.ToListAsync();
         }
 
-        // GET: api/Beam/5
+        // GET: api/ForceType/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Beam>> GetBeam(int id)
+        public async Task<ActionResult<ForceType>> GetForceType(int id)
         {
-            var beam = await _context.Beams.FindAsync(id);
+            var forceType = await _context.ForceTypes.FindAsync(id);
 
-            if (beam == null)
+            if (forceType == null)
             {
                 return NotFound();
             }
 
-            return beam;
+            return forceType;
         }
 
-        // PUT: api/Beam/5
+        // PUT: api/ForceType/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutBeam(int id, Beam beam)
+        public async Task<IActionResult> PutForceType(int id, ForceType forceType)
         {
-            if (id != beam.BeamId)
+            if (id != forceType.ForceTypeId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(beam).State = EntityState.Modified;
+            _context.Entry(forceType).State = EntityState.Modified;
 
             try
             {
@@ -62,7 +59,7 @@ namespace BeamAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!BeamExists(id))
+                if (!ForceTypeExists(id))
                 {
                     return NotFound();
                 }
@@ -75,36 +72,36 @@ namespace BeamAPI.Controllers
             return NoContent();
         }
 
-        // POST: api/Beam
+        // POST: api/ForceType
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Beam>> PostBeam(Beam beam)
+        public async Task<ActionResult<ForceType>> PostForceType(ForceType forceType)
         {
-            _context.Beams.Add(beam);
+            _context.ForceTypes.Add(forceType);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetBeam", new { id = beam.BeamId }, beam);
+            return CreatedAtAction("GetForceType", new { id = forceType.ForceTypeId }, forceType);
         }
 
-        // DELETE: api/Beam/5
+        // DELETE: api/ForceType/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteBeam(int id)
+        public async Task<IActionResult> DeleteForceType(int id)
         {
-            var beam = await _context.Beams.FindAsync(id);
-            if (beam == null)
+            var forceType = await _context.ForceTypes.FindAsync(id);
+            if (forceType == null)
             {
                 return NotFound();
             }
 
-            _context.Beams.Remove(beam);
+            _context.ForceTypes.Remove(forceType);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool BeamExists(int id)
+        private bool ForceTypeExists(int id)
         {
-            return _context.Beams.Any(e => e.BeamId == id);
+            return _context.ForceTypes.Any(e => e.ForceTypeId == id);
         }
     }
 }

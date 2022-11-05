@@ -11,14 +11,21 @@ namespace BeamAPI.Models
     {
         [Key]
         public int BeamId { get; set; }
-        [Column(TypeName = "nvarchar(100)")]
+        [Column(TypeName = "nvarchar(200)")]
         public string BeamName { get; set; }
+        [Column(TypeName = "nvarchar(200)")]
+        public string BeamDefinition { get; set; }
 
         public decimal Span { get; set; }
         public decimal A { get; set; }
         public decimal B { get; set; }
+        public decimal Vmax { get; set; }
+        public decimal Vmin { get; set; }
+        public decimal Mmax { get; set; }
+        public decimal Mmin { get; set; }
 
-        public IList<Type> Types { get; set; }
+
+        public List<Type> Types { get; set; }
 
     }
 }
