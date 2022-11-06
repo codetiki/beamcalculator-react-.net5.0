@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Modal, Button, Table, Accordion } from 'react-bootstrap';
+import { Modal, Button, Table, Accordion, Card, Row, Col } from 'react-bootstrap';
 import { createAPIEndpoint, ENDPOINTS } from "./api/Index";
 import { BsTrash, BsPencil, BsList } from "react-icons/bs";
 
@@ -59,75 +59,61 @@ const ResultList = (props) => {
             )
         })
         return (
+            <Accordion>
+                <Accordion.Item as={Button} variant="link" eventKey="0">
 
-            <>
-                <tr key={r.beamId}>
-                    <td>{r.beamId}</td>
-                    <td>{r.beamName}</td>
-                    <td>{r.beamDefinition}</td>
-                    <td>{r.vmax}</td>
-                    <td>{r.vmin}</td>
-                    <td>{r.mmax}</td>
-                    <td>{r.mmin}</td>
-                    <td><Button variant="outline-danger" onClick={(e) => onDeleteResult(r.beamId)}><BsTrash /></Button></td>
-                    {/* <th><Button variant="outline-warning" onClick={() => onEditResurssi(r)}><BsPencil /></Button></th> */}
-                </tr>
-                {/* {rowsTypes} */}
-            </>
+                    <Accordion.Header>
+                        <Table>
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Name</th>
+                                    <th>Definition</th>
+                                    <th>Vmax</th>
+                                    <th>Vmin</th>
+                                    <th>Mmax</th>
+                                    <th>Mmin</th>
+                                    <th>Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr key={r.beamId}>
+                                    <td>{r.beamId}</td>
+                                    <td>{r.beamName}</td>
+                                    <td>{r.beamDefinition}</td>
+                                    <td>{r.vmax}</td>
+                                    <td>{r.vmin}</td>
+                                    <td>{r.mmax}</td>
+                                    <td>{r.mmin}</td>
+                                    <td><Button variant="outline-danger" onClick={(e) => onDeleteResult(r.beamId)}><BsTrash /></Button></td>
+                                    {/* <th><Button variant="outline-warning" onClick={() => onEditResurssi(r)}><BsPencil /></Button></th> */}
+                                </tr>
+                            </tbody>
+                        </Table>
+                    </Accordion.Header>
+                    <Accordion.Body>
+                        <Table>
+                            <thead>
+                                <tr>
+                                    <th>TypeId</th>
+                                    <th>Definition</th>
+                                    <th>Xp</th>
+                                    <th>Fy</th>
+                                    <th>Xm</th>
+                                    <th>M</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {rowsTypes}
+                            </tbody>
+                        </Table>
+                    </Accordion.Body>
+                </Accordion.Item>
+
+            </Accordion>
 
         );
     })
-
-    const rowsTypes = resultList.map((r) => {
-        console.log("r rowsResults", r);
-        const rowsTypes1 = r.types.map((tyyppi) => {
-            return (
-                <tr key={tyyppi.typeId}>
-                    <td>{tyyppi.typeId}</td>
-                    <td>{tyyppi.beamDefinition}</td>
-                    <td>{tyyppi.xp}</td>
-                    <td>{tyyppi.fy}</td>
-                    <td>{tyyppi.beamDefinition}</td>
-                    <td>{tyyppi.beamDefinition}</td>
-                </tr>
-            )
-        })
-        return (
-
-            <>
-
-                {rowsTypes1}
-            </>
-
-        );
-    })
-
-    // const rowsTypes = resultList.map((r) => {
-    //     console.log("r rowsTypes", r);
-    //     r.types.map((tyyppi) => {
-    //         console.log("tyyppi.beamDefinition rowsTypes", tyyppi.beamDefinition);
-    //         return (
-    //             <tr key={tyyppi.typeId}>
-    //                 <td>{tyyppi.typeId}</td>
-    //                 <td>{tyyppi.beamDefinition}</td>
-    //             </tr>
-    //         )
-    //     })
-
-
-    // })
-
-    const osastolista = resultList.map((r) => {
-        const paikkalista = r.types.map((tyyppi) => {
-            return <li key={tyyppi.typeId}>{tyyppi.beamDefinition}</li>
-        })
-        return (
-            <li key={r.beamId}>
-                {r.beamName}
-                <ul>{paikkalista}</ul>
-            </li>);
-    })
-
 
 
     return (
@@ -143,48 +129,7 @@ const ResultList = (props) => {
                     <Modal.Title>ResultList</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Accordion defaultActiveKey="0" flush>
-                        <Accordion.Item eventKey="0">
-                            <Accordion.Header>
-                                <Table>
-                                    <thead>
-                                        <tr>
-                                            <th>TypeId</th>
-                                            <th>Definition</th>
-                                            <th>Xp</th>
-                                            <th>Fy</th>
-                                            <th>Xm</th>
-                                            <th>M</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {rowsResults}
-                                    </tbody>
-                                </Table>
-                            </Accordion.Header>
-                            <Accordion.Body>
-                                <Table>
-                                    <thead>
-                                        <tr>
-                                            <th>Id</th>
-                                            <th>Name</th>
-                                            <th>Definition</th>
-                                            <th>Vmax</th>
-                                            <th>Vmin</th>
-                                            <th>Mmax</th>
-                                            <th>Mmin</th>
-                                            <th>Delete</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {rowsTypes}
-                                    </tbody>
-                                </Table>
-                            </Accordion.Body>
-                        </Accordion.Item>
-
-                    </Accordion>
-
+                    {rowsResults}
 
                 </Modal.Body>
                 <Modal.Footer>
