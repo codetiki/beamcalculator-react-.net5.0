@@ -137,10 +137,10 @@ const BeamCalculator = (props) => {
         }
         // Lisätään toinen tasainen viivakuorma
         if (formData.fyUDL2) {
-            distributedLoads.push([parseInt(formData.xStart2), parseInt(formData.xEnd2), parseInt(formData.fyUDL2)]);
+            distributedLoads.push([parseInt(formData.xStartUDL2), parseInt(formData.xEndUDL2), parseInt(formData.fyUDL2)]);
         }
         if (formData.fyUDL3) {
-            distributedLoads.push([parseInt(formData.xStart3), parseInt(formData.xEnd3), parseInt(formData.fyUDL3)]);
+            distributedLoads.push([parseInt(formData.xStartUDL3), parseInt(formData.xEndUDL3), parseInt(formData.fyUDL3)]);
         }
         // Lisätään toinen lineaarinen viivakuorma
         if (formData.fy_EndLDL2) {

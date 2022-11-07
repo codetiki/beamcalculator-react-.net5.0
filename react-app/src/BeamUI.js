@@ -116,6 +116,10 @@ const BeamUI = () => {
         "beamId": createBeamId,
     });
 
+    // console.log("formType1", formType1);
+    // console.log("formType2", formType2);
+    // console.log("formType3", formType3);
+
     const [showResultButton, setShowResultButton] = useState(false);
     const [showBeamValues, setShowBeamValues] = useState(false);
     const [showLoadsValues, setShowLoadsValues] = useState(false);
@@ -519,6 +523,22 @@ const BeamUI = () => {
 
                                             />
                                         </Box>
+                                        {/* <select
+                                            class="form-select"
+                                            aria-label="Default select example"
+                                            name=''
+                                            value={forceType}
+                                            onChange={(e) => {
+                                                setFormData({ ...formData, type: e.target.value });
+                                                setForceType(e.target.value);
+                                            }}
+                                        >
+                                            <option value={0} key={0}>--Choise--</option>
+                                            <option value={"PL"} key={1}>PointLoad</option>
+                                            <option value={"PM"} key={2}>MomentLoad</option>
+                                            <option value={"UDL"} key={3}>DistributedLoad</option>
+                                            <option value={"LDL"} key={4}>LinearLoad</option>
+                                        </select> */}
                                     </div>
 
 
@@ -857,9 +877,9 @@ const BeamUI = () => {
                                                     <input
                                                         type="text"
                                                         class="form-control"
-                                                        name='xStartUDL1'
-                                                        placeholder='xStartUDL1...'
-                                                        value={formData.xStartUDL1}
+                                                        name='xStartUDL'
+                                                        placeholder='xStartUDL...'
+                                                        value={formType1.xStartUDL}
                                                         onChange={(e) => {
                                                             setFormData({ ...formData, xStartUDL1: e.target.value, changed: false, check: false });
                                                             setFormType1({ ...formType1, xStartUDL: e.target.value });
@@ -872,9 +892,9 @@ const BeamUI = () => {
                                                     <input
                                                         type="text"
                                                         class="form-control"
-                                                        name='xEndUDL1'
-                                                        placeholder='xEndUDL1...'
-                                                        value={formData.xEndUDL1}
+                                                        name='xEndUDL'
+                                                        placeholder='xEndUDL...'
+                                                        value={formType1.xEndUDL}
                                                         onChange={(e) => {
                                                             setFormData({ ...formData, xEndUDL1: e.target.value, changed: false, check: false });
                                                             setFormType1({ ...formType1, xEndUDL: e.target.value });
@@ -887,9 +907,9 @@ const BeamUI = () => {
                                                     <input
                                                         type="text"
                                                         class="form-control"
-                                                        name='fyUDL1'
-                                                        placeholder='fyUDL1...'
-                                                        value={formData.fyUDL1}
+                                                        name='fyUDL'
+                                                        placeholder='fyUDL...'
+                                                        value={formType1.fyUDL}
                                                         onChange={(e) => {
                                                             setFormData({ ...formData, fyUDL1: e.target.value, changed: false, check: false });
                                                             setFormType1({ ...formType1, fyUDL: e.target.value });
@@ -925,8 +945,8 @@ const BeamUI = () => {
                                                     <input
                                                         type="text"
                                                         class="form-control"
-                                                        name='xStartUDL2'
-                                                        value={formData.xStartUDL2}
+                                                        name='xStartUDL'
+                                                        value={formType2.xStartUDL}
                                                         onChange={(e) => {
                                                             setFormData({ ...formData, xStartUDL2: e.target.value, changed: false, check: false });
                                                             setFormType2({ ...formType2, xStartUDL: e.target.value });
@@ -939,8 +959,8 @@ const BeamUI = () => {
                                                     <input
                                                         type="text"
                                                         class="form-control"
-                                                        name='xEndUDL2'
-                                                        value={formData.xEndUDL2}
+                                                        name='xEndUDL'
+                                                        value={formType2.xEndUDL}
                                                         onChange={(e) => {
                                                             setFormData({ ...formData, xEndUDL2: e.target.value, changed: false, check: false });
                                                             setFormType2({ ...formType2, xEndUDL: e.target.value });
@@ -953,8 +973,8 @@ const BeamUI = () => {
                                                     <input
                                                         type="text"
                                                         class="form-control"
-                                                        name='fyUDL2'
-                                                        value={formData.fyUDL2}
+                                                        name='fyUDL'
+                                                        value={formData.fyUDL}
                                                         onChange={(e) => {
                                                             setFormData({ ...formData, fyUDL2: e.target.value, changed: false, check: false });
                                                             setFormType2({ ...formType2, fyUDL: e.target.value });
@@ -990,8 +1010,8 @@ const BeamUI = () => {
                                                     <input
                                                         type="text"
                                                         class="form-control"
-                                                        name='xStartUDL3'
-                                                        value={formData.xStartUDL3}
+                                                        name='xStartUDL'
+                                                        value={formType3.xStartUDL}
                                                         onChange={(e) => {
                                                             setFormData({ ...formData, xStartUDL3: e.target.value, changed: false, check: false });
                                                             setFormType3({ ...formType3, xStartUDL: e.target.value });
@@ -1004,8 +1024,8 @@ const BeamUI = () => {
                                                     <input
                                                         type="text"
                                                         class="form-control"
-                                                        name='xEndUDL3'
-                                                        value={formData.xEndUDL3}
+                                                        name='xEndUDL'
+                                                        value={formType3.xEndUDL}
                                                         onChange={(e) => {
                                                             setFormData({ ...formData, xEndUDL3: e.target.value, changed: false, check: false });
                                                             setFormType3({ ...formType3, xEndUDL: e.target.value });
@@ -1018,8 +1038,8 @@ const BeamUI = () => {
                                                     <input
                                                         type="text"
                                                         class="form-control"
-                                                        name='fyUDL3'
-                                                        value={formData.fyUDL3}
+                                                        name='fyUDL'
+                                                        value={formType3.fyUDL}
                                                         onChange={(e) => {
                                                             setFormData({ ...formData, fyUDL3: e.target.value, changed: false, check: false });
                                                             setFormType3({ ...formType3, fyUDL: e.target.value });

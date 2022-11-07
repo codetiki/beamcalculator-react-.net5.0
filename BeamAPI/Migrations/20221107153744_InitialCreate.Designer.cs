@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BeamAPI.Migrations
 {
     [DbContext(typeof(BeamDbContext))]
-    [Migration("20221106143953_Initial Create")]
+    [Migration("20221107153744_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -34,12 +34,14 @@ namespace BeamAPI
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "BeamAPI", Version = "v1" });
             });
 
+            // Otetaan tietokanta käyttöön
             services.AddDbContext<BeamDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DevConnection")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            // Määrittely, joka sallii CORSin, jotta selainpohjaiset client-sovellukset eri domaineissa voivat palvelua käyttää.
             app.UseCors(options =>
             options.WithOrigins("http://localhost:3000")
             .AllowAnyMethod()

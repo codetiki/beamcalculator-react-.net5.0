@@ -24,6 +24,7 @@ namespace BeamAPI.Models
         public decimal Fy_StartLDL { get; set; }
         public decimal Fy_EndLDL { get; set; }
         public int BeamId { get; set; }
+        // Jätetään Beam huomioimatta
         [JsonIgnore]
         public Beam Beam { get; set; }
  

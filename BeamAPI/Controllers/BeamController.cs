@@ -13,8 +13,10 @@ namespace BeamAPI.Controllers
     [ApiController]
     public class BeamController : ControllerBase
     {
+        // context otetaan privaattiin _context-muuttujaan talteen, jota käytetään jatkossa.
         private readonly BeamDbContext _context;
 
+        // Kontrollerissa otetaan context käyttöön
         public BeamController(BeamDbContext context)
         {
             _context = context;
@@ -24,6 +26,7 @@ namespace BeamAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Beam>>> GetBeams()
         {
+            // Lisätään Beam:iin liittyvät Typet
             var newbeam = await _context.Beams
                 .Include(blog => blog.Types)
                 .ToListAsync();

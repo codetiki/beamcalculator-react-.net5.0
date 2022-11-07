@@ -13,8 +13,8 @@ const ResultList = (props) => {
         setUpdateResult
     } = props;
 
-    console.log("formData ResultList", formData.name);
-    console.log("updateResult 1", updateResult)
+    // console.log("formData ResultList", formData.name);
+    // console.log("updateResult 1", updateResult)
 
     const [show, setShow] = React.useState(false);
     const handleClose = () => { setShow(false) }
@@ -23,7 +23,7 @@ const ResultList = (props) => {
     const [resultList, setResultList] = useState([]);
 
     useEffect(() => {
-        console.log("updateResult 3", updateResult)
+        // console.log("updateResult 3", updateResult)
         createAPIEndpoint(ENDPOINTS.BEAM).fetchAll()
             .then(res => {
                 setResultList(res.data)
@@ -33,7 +33,7 @@ const ResultList = (props) => {
         setUpdateResult(false);
     }, [updateResult])
 
-    console.log("updateResult 2", updateResult)
+    // console.log("updateResult 2", updateResult)
 
     const onDeleteResult = (id) => {
         createAPIEndpoint(ENDPOINTS.BEAM).delete(id)
@@ -45,7 +45,7 @@ const ResultList = (props) => {
 
     // mäpätään resurssit-taulukon rivit Modal-tauluun
     const rowsResults = resultList.map((r) => {
-        console.log("r rowsResults", r);
+        // console.log("r rowsResults", r);
         const rowsTypes = r.types.map((tyyppi) => {
             return (
                 <tr key={tyyppi.typeId}>
