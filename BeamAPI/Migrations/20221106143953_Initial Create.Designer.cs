@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BeamAPI.Migrations
 {
     [DbContext(typeof(BeamDbContext))]
-    [Migration("20221104111645_Initial Create")]
+    [Migration("20221106143953_Initial Create")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -83,9 +83,6 @@ namespace BeamAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("BeamDefinition")
-                        .HasColumnType("nvarchar(200)");
 
                     b.Property<int>("BeamId")
                         .HasColumnType("int");

@@ -12,8 +12,6 @@ namespace BeamAPI.Models
     {
         [Key]
         public int TypeId { get; set; }
-        [Column(TypeName = "nvarchar(200)")]
-        public string BeamDefinition { get; set; }
         public decimal Xp { get; set; }
         public decimal Fy { get; set; }
         public decimal Xm { get; set; }

@@ -50,11 +50,17 @@ const ResultList = (props) => {
             return (
                 <tr key={tyyppi.typeId}>
                     <td>{tyyppi.typeId}</td>
-                    <td>{tyyppi.beamDefinition}</td>
                     <td>{tyyppi.xp}</td>
                     <td>{tyyppi.fy}</td>
-                    <td>{tyyppi.beamDefinition}</td>
-                    <td>{tyyppi.beamDefinition}</td>
+                    <td>{tyyppi.xm}</td>
+                    <td>{tyyppi.m}</td>
+                    <td>{tyyppi.xStartUDL}</td>
+                    <td>{tyyppi.xEndUDL}</td>
+                    <td>{tyyppi.fyUDL}</td>
+                    <td>{tyyppi.xStartLDL}</td>
+                    <td>{tyyppi.xEndLDL}</td>
+                    <td>{tyyppi.fy_StartLDL}</td>
+                    <td>{tyyppi.fy_EndLDL}</td>
                 </tr>
             )
         })
@@ -96,11 +102,17 @@ const ResultList = (props) => {
                             <thead>
                                 <tr>
                                     <th>TypeId</th>
-                                    <th>Definition</th>
                                     <th>Xp</th>
                                     <th>Fy</th>
                                     <th>Xm</th>
                                     <th>M</th>
+                                    <th>XStartUDL</th>
+                                    <th>XEndUDL</th>
+                                    <th>FyUDL</th>
+                                    <th>XStartLDL</th>
+                                    <th>XEndLDL</th>
+                                    <th>Fy_StartLDL</th>
+                                    <th>Fy_EndLDL</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -122,6 +134,7 @@ const ResultList = (props) => {
                 Tallennetut Tulokset
             </Button>
             <Modal
+                size="xl"
                 show={show}
                 onHide={handleClose}
             >

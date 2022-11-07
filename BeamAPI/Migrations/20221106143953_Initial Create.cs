@@ -47,7 +47,6 @@ namespace BeamAPI.Migrations
                 {
                     TypeId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    BeamDefinition = table.Column<string>(type: "nvarchar(200)", nullable: true),
                     Xp = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Fy = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Xm = table.Column<decimal>(type: "decimal(18,2)", nullable: false),

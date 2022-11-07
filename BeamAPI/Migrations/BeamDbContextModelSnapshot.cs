@@ -82,9 +82,6 @@ namespace BeamAPI.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("BeamDefinition")
-                        .HasColumnType("nvarchar(200)");
-
                     b.Property<int>("BeamId")
                         .HasColumnType("int");
 

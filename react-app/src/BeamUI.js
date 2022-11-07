@@ -29,6 +29,8 @@ const getFreshModelObject = () => ({
 
 const BeamUI = () => {
 
+    const [createBeamId, setCreateBeamId] = useState(null);
+    // const createBeamId = null;
     // const { CalculateShearForce } = useContext(BeamContext);
     const [values, setValues] = useState(getFreshModelObject());
     const [forceTypeList, setForceTypeList] = useState([]);
@@ -67,6 +69,51 @@ const BeamUI = () => {
         "Vmin": "",
         "Mmax": "",
         "Mmin": ""
+    });
+
+    const [formType1, setFormType1] = useState({
+        "xp": "0",
+        "fy": "0",
+        "xm": "0",
+        "m": "0",
+        "xStartUDL": "0",
+        "xEndUDL": "0",
+        "fyUDL": "0",
+        "xStartLDL": "0",
+        "xEndLDL": "0",
+        "fy_StartLDL": "0",
+        "fy_EndLDL": "0",
+        "beamId": createBeamId,
+    });
+
+    const [formType2, setFormType2] = useState({
+        "xp": "0",
+        "fy": "0",
+        "xm": "0",
+        "m": "0",
+        "xStartUDL": "0",
+        "xEndUDL": "0",
+        "fyUDL": "0",
+        "xStartLDL": "0",
+        "xEndLDL": "0",
+        "fy_StartLDL": "0",
+        "fy_EndLDL": "0",
+        "beamId": createBeamId,
+    });
+
+    const [formType3, setFormType3] = useState({
+        "xp": "0",
+        "fy": "0",
+        "xm": "0",
+        "m": "0",
+        "xStartUDL": "0",
+        "xEndUDL": "0",
+        "fyUDL": "0",
+        "xStartLDL": "0",
+        "xEndLDL": "0",
+        "fy_StartLDL": "0",
+        "fy_EndLDL": "0",
+        "beamId": createBeamId,
     });
 
     const [showResultButton, setShowResultButton] = useState(false);
@@ -157,16 +204,91 @@ const BeamUI = () => {
             "mmax": results.Mmax,
             "mmin": results.Mmin
         }
-
         // axios.post(url, postData,)
         createAPIEndpoint(ENDPOINTS.BEAM).create(postData)
             .then((response) => {
-                console.log("response", response);
-                setUpdateResult(true);
+                console.log("response.data.beamId", response.data.beamId);
+                // haetaan luodun palkin id
+                setCreateBeamId(response.data.beamId)
             });
-
-
     }
+
+    useEffect(() => {
+        if (createBeamId !== null && (formType1.fy !== "0" || formType1.m !== "0" || formType1.fyUDL !== "0" || formType1.fy_StartLDL !== "0" || formType1.fy_EndLDL !== "0")) {
+            console.log("createBeamId useEffect", createBeamId)
+            const postType1 = {
+                "xp": formType1.xp,
+                "fy": formType1.fy,
+                "xm": formType1.xm,
+                "m": formType1.m,
+                "xStartUDL": formType1.xStartUDL,
+                "xEndUDL": formType1.xEndUDL,
+                "fyUDL": formType1.fyUDL,
+                "xStartLDL": formType1.xStartLDL,
+                "xEndLDL": formType1.xEndLDL,
+                "fy_StartLDL": formType1.fy_StartLDL,
+                "fy_EndLDL": formType1.fy_EndLDL,
+                "beamId": createBeamId
+
+            }
+            createAPIEndpoint(ENDPOINTS.TYPE).create(postType1)
+                .then((response) => {
+                    console.log("response formType1", response);
+                    //setUpdateResult(true);
+                });
+        }
+
+        if (createBeamId !== null && (formType2.fy !== "0" || formType2.m !== "0" || formType2.fyUDL !== "0" || formType2.fy_StartLDL !== "0" || formType2.fy_EndLDL !== "0")) {
+            console.log("createBeamId useEffect", createBeamId)
+            const postType2 = {
+                "xp": formType2.xp,
+                "fy": formType2.fy,
+                "xm": formType2.xm,
+                "m": formType2.m,
+                "xStartUDL": formType2.xStartUDL,
+                "xEndUDL": formType2.xEndUDL,
+                "fyUDL": formType2.fyUDL,
+                "xStartLDL": formType2.xStartLDL,
+                "xEndLDL": formType2.xEndLDL,
+                "fy_StartLDL": formType2.fy_StartLDL,
+                "fy_EndLDL": formType2.fy_EndLDL,
+                "beamId": createBeamId
+
+            }
+            createAPIEndpoint(ENDPOINTS.TYPE).create(postType2)
+                .then((response) => {
+                    console.log("response formType1", response);
+                    // setUpdateResult(true);
+                });
+        }
+
+        if (createBeamId !== null && (formType3.fy !== "0" || formType3.m !== "0" || formType3.fyUDL !== "0" || formType3.fy_StartLDL !== "0" || formType3.fy_EndLDL !== "0")) {
+            console.log("createBeamId useEffect", createBeamId)
+            const postType3 = {
+                "xp": formType3.xp,
+                "fy": formType3.fy,
+                "xm": formType3.xm,
+                "m": formType3.m,
+                "xStartUDL": formType3.xStartUDL,
+                "xEndUDL": formType3.xEndUDL,
+                "fyUDL": formType3.fyUDL,
+                "xStartLDL": formType3.xStartLDL,
+                "xEndLDL": formType3.xEndLDL,
+                "fy_StartLDL": formType3.fy_StartLDL,
+                "fy_EndLDL": formType3.fy_EndLDL,
+                "beamId": createBeamId
+
+            }
+            createAPIEndpoint(ENDPOINTS.TYPE).create(postType3)
+                .then((response) => {
+                    console.log("response formType1", response);
+                    // setUpdateResult(true);
+                });
+        }
+
+        setUpdateResult(true);
+
+    }, [createBeamId])
 
 
     return (
@@ -223,6 +345,51 @@ const BeamUI = () => {
                                             fy_EndLDL3: "",
                                             check: false
                                         });
+                                        setFormType1({
+                                            ...formType1,
+                                            "xp": "0",
+                                            "fy": "0",
+                                            "xm": "0",
+                                            "m": "0",
+                                            "xStartUDL": "0",
+                                            "xEndUDL": "0",
+                                            "fyUDL": "0",
+                                            "xStartLDL": "0",
+                                            "xEndLDL": "0",
+                                            "fy_StartLDL": "0",
+                                            "fy_EndLDL": "0",
+                                            "beamId": null,
+                                        })
+                                        setFormType2({
+                                            ...formType2,
+                                            "xp": "0",
+                                            "fy": "0",
+                                            "xm": "0",
+                                            "m": "0",
+                                            "xStartUDL": "0",
+                                            "xEndUDL": "0",
+                                            "fyUDL": "0",
+                                            "xStartLDL": "0",
+                                            "xEndLDL": "0",
+                                            "fy_StartLDL": "0",
+                                            "fy_EndLDL": "0",
+                                            "beamId": null,
+                                        })
+                                        setFormType3({
+                                            ...formType3,
+                                            "xp": "0",
+                                            "fy": "0",
+                                            "xm": "0",
+                                            "m": "0",
+                                            "xStartUDL": "0",
+                                            "xEndUDL": "0",
+                                            "fyUDL": "0",
+                                            "xStartLDL": "0",
+                                            "xEndLDL": "0",
+                                            "fy_StartLDL": "0",
+                                            "fy_EndLDL": "0",
+                                            "beamId": null,
+                                        })
                                     }}
                                 >Tyhjennä lähtötiedot</button>
                             </div>
@@ -352,22 +519,6 @@ const BeamUI = () => {
 
                                             />
                                         </Box>
-                                        {/* <select
-                                            class="form-select"
-                                            aria-label="Default select example"
-                                            name=''
-                                            value={forceType}
-                                            onChange={(e) => {
-                                                setFormData({ ...formData, type: e.target.value });
-                                                setForceType(e.target.value);
-                                            }}
-                                        >
-                                            <option value={0} key={0}>--Choise--</option>
-                                            <option value={"PL"} key={1}>PointLoad</option>
-                                            <option value={"PM"} key={2}>MomentLoad</option>
-                                            <option value={"UDL"} key={3}>DistributedLoad</option>
-                                            <option value={"LDL"} key={4}>LinearLoad</option>
-                                        </select> */}
                                     </div>
 
 
@@ -410,6 +561,7 @@ const BeamUI = () => {
                                                         value={formData.xp1}
                                                         onChange={(e) => {
                                                             setFormData({ ...formData, xp1: e.target.value, changed: false, check: false });
+                                                            setFormType1({ ...formType1, xp: e.target.value });
                                                         }}
                                                     />
                                                 </div>
@@ -423,6 +575,7 @@ const BeamUI = () => {
                                                         value={formData.fy1}
                                                         onChange={(e) => {
                                                             setFormData({ ...formData, fy1: e.target.value, changed: false, check: false });
+                                                            setFormType1({ ...formType1, fy: e.target.value });
                                                         }}
                                                     />
                                                 </div>
@@ -460,6 +613,7 @@ const BeamUI = () => {
                                                         value={formData.xp2}
                                                         onChange={(e) => {
                                                             setFormData({ ...formData, xp2: e.target.value, changed: false, check: false });
+                                                            setFormType2({ ...formType2, xp: e.target.value });
                                                         }}
                                                     />
                                                 </div>
@@ -473,6 +627,7 @@ const BeamUI = () => {
                                                         value={formData.fy2}
                                                         onChange={(e) => {
                                                             setFormData({ ...formData, fy2: e.target.value, changed: false, check: false });
+                                                            setFormType2({ ...formType2, fy: e.target.value });
                                                         }}
                                                     />
                                                 </div>
@@ -509,6 +664,7 @@ const BeamUI = () => {
                                                         value={formData.xp3}
                                                         onChange={(e) => {
                                                             setFormData({ ...formData, xp3: e.target.value, changed: false, check: false });
+                                                            setFormType3({ ...formType3, xp: e.target.value });
                                                         }}
                                                     />
                                                 </div>
@@ -522,6 +678,7 @@ const BeamUI = () => {
                                                         value={formData.fy3}
                                                         onChange={(e) => {
                                                             setFormData({ ...formData, fy3: e.target.value, changed: false, check: false });
+                                                            setFormType3({ ...formType3, fy: e.target.value });
                                                         }}
                                                     />
                                                 </div>
@@ -555,6 +712,7 @@ const BeamUI = () => {
                                                         value={formData.xm1}
                                                         onChange={(e) => {
                                                             setFormData({ ...formData, xm1: e.target.value, changed: false, check: false });
+                                                            setFormType1({ ...formType1, xm: e.target.value });
                                                         }}
                                                     />
                                                 </div>
@@ -568,6 +726,8 @@ const BeamUI = () => {
                                                         value={formData.m1}
                                                         onChange={(e) => {
                                                             setFormData({ ...formData, m1: e.target.value, changed: false, check: false });
+                                                            setFormType1({ ...formType1, m: e.target.value });
+
                                                         }}
                                                     />
                                                 </div>
@@ -603,6 +763,7 @@ const BeamUI = () => {
                                                         value={formData.xm2}
                                                         onChange={(e) => {
                                                             setFormData({ ...formData, xm2: e.target.value, changed: false, check: false });
+                                                            setFormType2({ ...formType2, xm: e.target.value });
                                                         }}
                                                     />
                                                 </div>
@@ -616,6 +777,7 @@ const BeamUI = () => {
                                                         value={formData.m2}
                                                         onChange={(e) => {
                                                             setFormData({ ...formData, m2: e.target.value, changed: false, check: false });
+                                                            setFormType2({ ...formType2, m: e.target.value });
                                                         }}
                                                     />
                                                 </div>
@@ -651,6 +813,7 @@ const BeamUI = () => {
                                                         value={formData.xm3}
                                                         onChange={(e) => {
                                                             setFormData({ ...formData, xm3: e.target.value, changed: false, check: false });
+                                                            setFormType3({ ...formType3, xm: e.target.value });
                                                         }}
                                                     />
                                                 </div>
@@ -664,6 +827,7 @@ const BeamUI = () => {
                                                         value={formData.m3}
                                                         onChange={(e) => {
                                                             setFormData({ ...formData, m3: e.target.value, changed: false, check: false });
+                                                            setFormType3({ ...formType3, m: e.target.value });
                                                         }}
                                                     />
                                                 </div>
@@ -698,7 +862,7 @@ const BeamUI = () => {
                                                         value={formData.xStartUDL1}
                                                         onChange={(e) => {
                                                             setFormData({ ...formData, xStartUDL1: e.target.value, changed: false, check: false });
-
+                                                            setFormType1({ ...formType1, xStartUDL: e.target.value });
                                                         }}
                                                     />
                                                 </div>
@@ -713,6 +877,7 @@ const BeamUI = () => {
                                                         value={formData.xEndUDL1}
                                                         onChange={(e) => {
                                                             setFormData({ ...formData, xEndUDL1: e.target.value, changed: false, check: false });
+                                                            setFormType1({ ...formType1, xEndUDL: e.target.value });
                                                         }}
                                                     />
                                                 </div>
@@ -727,6 +892,7 @@ const BeamUI = () => {
                                                         value={formData.fyUDL1}
                                                         onChange={(e) => {
                                                             setFormData({ ...formData, fyUDL1: e.target.value, changed: false, check: false });
+                                                            setFormType1({ ...formType1, fyUDL: e.target.value });
                                                         }}
                                                     />
                                                 </div>
@@ -763,7 +929,7 @@ const BeamUI = () => {
                                                         value={formData.xStartUDL2}
                                                         onChange={(e) => {
                                                             setFormData({ ...formData, xStartUDL2: e.target.value, changed: false, check: false });
-
+                                                            setFormType2({ ...formType2, xStartUDL: e.target.value });
                                                         }}
                                                     />
                                                 </div>
@@ -777,6 +943,7 @@ const BeamUI = () => {
                                                         value={formData.xEndUDL2}
                                                         onChange={(e) => {
                                                             setFormData({ ...formData, xEndUDL2: e.target.value, changed: false, check: false });
+                                                            setFormType2({ ...formType2, xEndUDL: e.target.value });
                                                         }}
                                                     />
                                                 </div>
@@ -790,6 +957,7 @@ const BeamUI = () => {
                                                         value={formData.fyUDL2}
                                                         onChange={(e) => {
                                                             setFormData({ ...formData, fyUDL2: e.target.value, changed: false, check: false });
+                                                            setFormType2({ ...formType2, fyUDL: e.target.value });
                                                         }}
                                                     />
                                                 </div>
@@ -826,7 +994,7 @@ const BeamUI = () => {
                                                         value={formData.xStartUDL3}
                                                         onChange={(e) => {
                                                             setFormData({ ...formData, xStartUDL3: e.target.value, changed: false, check: false });
-
+                                                            setFormType3({ ...formType3, xStartUDL: e.target.value });
                                                         }}
                                                     />
                                                 </div>
@@ -840,6 +1008,7 @@ const BeamUI = () => {
                                                         value={formData.xEndUDL3}
                                                         onChange={(e) => {
                                                             setFormData({ ...formData, xEndUDL3: e.target.value, changed: false, check: false });
+                                                            setFormType3({ ...formType3, xEndUDL: e.target.value });
                                                         }}
                                                     />
                                                 </div>
@@ -853,6 +1022,7 @@ const BeamUI = () => {
                                                         value={formData.fyUDL3}
                                                         onChange={(e) => {
                                                             setFormData({ ...formData, fyUDL3: e.target.value, changed: false, check: false });
+                                                            setFormType3({ ...formType3, fyUDL: e.target.value });
                                                         }}
                                                     />
                                                 </div>
@@ -886,7 +1056,7 @@ const BeamUI = () => {
                                                         value={formData.xStartLDL1}
                                                         onChange={(e) => {
                                                             setFormData({ ...formData, xStartLDL1: e.target.value, changed: false, check: false });
-
+                                                            setFormType1({ ...formType1, xStartLDL: e.target.value });
                                                         }}
                                                     />
                                                 </div>
@@ -900,7 +1070,7 @@ const BeamUI = () => {
                                                         value={formData.xEndLDL1}
                                                         onChange={(e) => {
                                                             setFormData({ ...formData, xEndLDL1: e.target.value, changed: false, check: false });
-
+                                                            setFormType1({ ...formType1, xEndLDL: e.target.value });
                                                         }}
                                                     />
                                                 </div>
@@ -914,7 +1084,7 @@ const BeamUI = () => {
                                                         value={formData.fy_StartLDL1}
                                                         onChange={(e) => {
                                                             setFormData({ ...formData, fy_StartLDL1: e.target.value, changed: false, check: false });
-
+                                                            setFormType1({ ...formType1, fy_StartLDL: e.target.value });
                                                         }}
                                                     />
                                                 </div>
@@ -928,7 +1098,7 @@ const BeamUI = () => {
                                                         value={formData.fy_EndLDL1}
                                                         onChange={(e) => {
                                                             setFormData({ ...formData, fy_EndLDL1: e.target.value, changed: false, check: false });
-
+                                                            setFormType1({ ...formType1, fy_EndLDL: e.target.value });
                                                         }}
                                                     />
                                                 </div>
@@ -966,7 +1136,7 @@ const BeamUI = () => {
                                                         value={formData.xStartLDL2}
                                                         onChange={(e) => {
                                                             setFormData({ ...formData, xStartLDL2: e.target.value, changed: false, check: false });
-
+                                                            setFormType2({ ...formType2, xStartLDL: e.target.value });
                                                         }}
                                                     />
                                                 </div>
@@ -980,7 +1150,7 @@ const BeamUI = () => {
                                                         value={formData.xEndLDL2}
                                                         onChange={(e) => {
                                                             setFormData({ ...formData, xEndLDL2: e.target.value, changed: false, check: false });
-
+                                                            setFormType2({ ...formType2, xEndLDL: e.target.value });
                                                         }}
                                                     />
                                                 </div>
@@ -994,7 +1164,7 @@ const BeamUI = () => {
                                                         value={formData.fy_StartLDL2}
                                                         onChange={(e) => {
                                                             setFormData({ ...formData, fy_StartLDL2: e.target.value, changed: false, check: false });
-
+                                                            setFormType2({ ...formType2, fy_StartLDL: e.target.value });
                                                         }}
                                                     />
                                                 </div>
@@ -1008,7 +1178,7 @@ const BeamUI = () => {
                                                         value={formData.fy_EndLDL2}
                                                         onChange={(e) => {
                                                             setFormData({ ...formData, fy_EndLDL2: e.target.value, changed: false, check: false });
-
+                                                            setFormType2({ ...formType2, fy_EndLDL: e.target.value });
                                                         }}
                                                     />
                                                 </div>
@@ -1046,7 +1216,7 @@ const BeamUI = () => {
                                                         value={formData.xStartLDL3}
                                                         onChange={(e) => {
                                                             setFormData({ ...formData, xStartLDL3: e.target.value, changed: false, check: false });
-
+                                                            setFormType3({ ...formType3, xStartLDL: e.target.value });
                                                         }}
                                                     />
                                                 </div>
@@ -1060,7 +1230,7 @@ const BeamUI = () => {
                                                         value={formData.xEndLDL3}
                                                         onChange={(e) => {
                                                             setFormData({ ...formData, xEndLDL3: e.target.value, changed: false, check: false });
-
+                                                            setFormType3({ ...formType3, xEndLDL: e.target.value });
                                                         }}
                                                     />
                                                 </div>
@@ -1074,7 +1244,7 @@ const BeamUI = () => {
                                                         value={formData.fy_StartLDL3}
                                                         onChange={(e) => {
                                                             setFormData({ ...formData, fy_StartLDL3: e.target.value, changed: false, check: false });
-
+                                                            setFormType3({ ...formType3, fy_StartLDL: e.target.value });
                                                         }}
                                                     />
                                                 </div>
@@ -1088,7 +1258,7 @@ const BeamUI = () => {
                                                         value={formData.fy_EndLDL3}
                                                         onChange={(e) => {
                                                             setFormData({ ...formData, fy_EndLDL3: e.target.value, changed: false, check: false });
-
+                                                            setFormType3({ ...formType3, fy_EndLDL: e.target.value });
                                                         }}
                                                     />
                                                 </div>
@@ -1178,6 +1348,7 @@ const BeamUI = () => {
             </div>
         </div >
     )
+
 }
 
 export default BeamUI
