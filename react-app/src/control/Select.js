@@ -1,7 +1,7 @@
 import React from 'react'
 import { FormControl, InputLabel, Select as MuiSelect, MenuItem, FormHelperText } from '@material-ui/core';
 
-export function Select(props) {
+export default function Select(props) {
 
     const { name, label, value, varient, onChange, options, error = null } = props;
 

@@ -1,0 +1,35 @@
++ src
+|
++----+ components
+|    | 
+|    +-- Home.js
+|    |
+|    +--+ Beam
+|       |
+|       +-- index.js
+|       +-- BeamForm.js
+|       +-- TypeForm.js
+|       +-- CreatedBeamDatas.js
+|
++----+ layouts
+|    | 
+|    +-- Form.js
+|    +-- Table.js
+|    +-- Popup.js
+|    +-- Notification.js
+|
++----+ hooks
+|    | 
+|    +-- useForm.js
+|
++----+ utils
+|    | 
+|    +-- index.js
+|
++----+ controls
+     | 
+     +-- Input.js
+     +-- Button.js
+     +-- Select.js   
+	 
+	 

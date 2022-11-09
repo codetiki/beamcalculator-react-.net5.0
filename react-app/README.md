@@ -6,6 +6,11 @@ ja laskee voimasuureiden maksimit.
 Palkissa voi olla päissä ulokkeet.
 Kuormitustyypit ovat pistekuorma, pistemomentti, tasainen viivakuorma ja lineaarinen viivakuorma.
 Samantyyppisiä kuormia voi olla max. 3 kpl. 
+
+Lähtötietojen syöttö ja tulokset eriytetty eri sivustolle. 
+App.js sisältää vain Home.js. Home.js:ssä luodaan välilehdet.
+Home.js sisällä on  
+Tallennetut tulokset näkyvät popup-sivuna.
 ### Kuva Layout:sta
 
 ![Kuva](./src/images/Layout.png)
@@ -20,5 +25,9 @@ Ohjelma käynnistyy terminaalissa komennolla `npm start`
 - Hooks: useState, useEffect
 - react-chartjs-2
 - bootstrap
+- material-ui
+
+## Vinkkejä
+`rfc` luodaan uusi functionaalinen komponentti
 
 Copyright © Timo Kivelä
