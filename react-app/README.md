@@ -11,10 +11,6 @@ Lähtötietojen syöttö ja tulokset eriytetty eri sivustolle.
 App.js sisältää vain Home.js. Home.js:ssä luodaan välilehdet.
 Home.js sisällä on  
 
-## Puuttuvia asioita
-- Syötteiden tarkistus
-- Syötteiden päivitys
-
 ### Kuvia Layout:sta ja laskennan kulku
 ![Kuva](./src/images/layout_lähtötiedot.png)
 Syötä palkin pituus ja tukien sijainnit. 
@@ -44,5 +40,9 @@ Ohjelma käynnistyy terminaalissa komennolla `npm start`
 ## Laskentaesimerkki
 ![Kuva](./src/images/exampleCase.png)
 Kuvia Layout:sta ja laskennan kulku-kohdassa laskin tämän laskentatapauksen.
+
+## Puuttuvia asioita
+- Syötteiden tarkistus
+- Syötteiden päivitys
 
 Copyright © Timo Kivelä

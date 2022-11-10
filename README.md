@@ -58,4 +58,6 @@ Types-tauluun tulostuu syötetyt kuormitukset.
 ## Backendin käynnistys
 Backend ASP.Net käynnistetään toisessa terminaalissa komennolla: `dotnet run`.
 
+Copyright © Timo Kivelä
+
 
