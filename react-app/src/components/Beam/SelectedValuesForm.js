@@ -25,6 +25,7 @@ export default function SelectedValuesForm(props) {
     console.log("target 1", target);
 
     delete target.forceTypeId;
+    delete target.check;
     Object.keys(target).map(k => target[k] == "0" ? delete target[k] : target[k]);
     Object.keys(target).map(k => target[k] == 0 ? delete target[k] : target[k]);
     // Object.keys(target).map(k => target[k] == true ? delete target[k] : target[k]);

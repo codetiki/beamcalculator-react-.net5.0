@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-// import { useForm } from '../../hook/useForm';
+import React from 'react';
 import { Grid } from '@material-ui/core';
 import BeamForm from './BeamForm';
 import TypeForm from './TypeForm';
@@ -19,18 +18,12 @@ export default function Beam(props) {
         resetFormControls
     } = props;
 
-
-    const [showResultButton, setShowResultButton] = useState(false); // Result-nappi ON/OFF
-
-
     const handleInputChange = e => {
-        console.log("e handleInputChange", e.target);
         const { name, value } = e.target
         setValues({
             ...values,
             [name]: value
         })
-        console.log("values handleInputChange", values);
     }
 
     return (
@@ -49,20 +42,15 @@ export default function Beam(props) {
                             setResults,
                             resetFormControls,
                             handleInputChange,
-
                         }}
                     />
                 </Grid>
                 <Grid item xs={4}>
                     <BeamForm
                         {...{
-                            createBeamId,
-                            setCreateBeamId,
                             values,
                             setValues,
-
                             handleInputChange,
-
                         }}
                     />
                 </Grid>
@@ -71,9 +59,7 @@ export default function Beam(props) {
                         {...{
                             values,
                             setValues,
-
                             handleInputChange,
-
                         }}
                     />
                 </Grid>
@@ -85,8 +71,6 @@ export default function Beam(props) {
                     />
                 </Grid>
             </Grid>
-
-
         </>
     )
 }

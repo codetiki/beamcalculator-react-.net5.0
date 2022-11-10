@@ -1,8 +1,5 @@
 import React, { useState } from "react";
 import { Tabs, Tab, AppBar } from "@material-ui/core";
-import About from "./About";
-import Contact from "./Contact";
-import BeamUI from "./BeamUI";
 import Beam from "./components/Beam/index";
 import Result from "./components/Result";
 
@@ -58,13 +55,11 @@ const Home = () => {
 
     const resetFormControls = () => {
         setValues(getFreshModelObject());
-        // setErrors({})
     }
 
     return (
         <>
             <AppBar position="static">
-
                 <Tabs value={selectedTab} onChange={handleChange} aria-label="basic tabs example">
                     <Tab label="Lähtötiedot" />
                     <Tab label="Tulokset" />

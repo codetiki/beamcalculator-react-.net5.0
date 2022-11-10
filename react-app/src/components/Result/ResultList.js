@@ -69,7 +69,6 @@ const ResultList = (props) => {
         return (
             <Accordion>
                 <Accordion.Item as={Button} variant="link" eventKey="0">
-
                     <Accordion.Header>
                         <Table>
                             <thead>
@@ -94,7 +93,6 @@ const ResultList = (props) => {
                                     <td>{r.mmax}</td>
                                     <td>{r.mmin}</td>
                                     <td><Button variant="outline-danger" onClick={(e) => onDeleteResult(r.beamId)}><BsTrash /></Button></td>
-                                    {/* <th><Button variant="outline-warning" onClick={() => onEditResurssi(r)}><BsPencil /></Button></th> */}
                                 </tr>
                             </tbody>
                         </Table>
@@ -123,9 +121,7 @@ const ResultList = (props) => {
                         </Table>
                     </Accordion.Body>
                 </Accordion.Item>
-
             </Accordion>
-
         );
     })
 

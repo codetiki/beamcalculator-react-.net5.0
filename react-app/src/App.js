@@ -1,9 +1,7 @@
 import React from 'react';
 import './App.css';
-import BeamUI from "./BeamUI";
 import Home from './Home';
 import { Container, Typography } from "@material-ui/core";
-
 
 function App() {
 
@@ -20,7 +18,6 @@ function App() {
         {/* <BeamUI /> */}
         <Home />
       </Container>
-
     </>
   )
 }

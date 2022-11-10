@@ -1,35 +1,34 @@
 + src
 |
++-- Home.js (navigointipalkki)
+|
 +----+ components
-|    | 
-|    +-- Home.js
 |    |
-|    +--+ Beam
+|    +--+ Beam (Lähtötiedot-välilehti)
+|    |  |
+|    |  +-- index.js
+|    |  +-- BeamForm.js
+|    |  +-- TypeForm.js
+|    |  +-- SelectedValuesForm.js
+|    |  +-- ButtonBeamForm.js
+||   |
+|    +--+ Result (Tulokset-välilehti)
 |       |
 |       +-- index.js
-|       +-- BeamForm.js
-|       +-- TypeForm.js
-|       +-- CreatedBeamDatas.js
-|
-+----+ layouts
+|       +-- Calculator.js
+|       +-- ResultList.js
+|       +-- LineChart.js
+|       
++----+ layouts (Formin ja notificationin (ilmoitusten) asetukset)
 |    | 
 |    +-- Form.js
-|    +-- Table.js
-|    +-- Popup.js
 |    +-- Notification.js
 |
-+----+ hooks
-|    | 
-|    +-- useForm.js
-|
-+----+ utils
-|    | 
-|    +-- index.js
-|
-+----+ controls
-     | 
-     +-- Input.js
-     +-- Button.js
-     +-- Select.js   
-	 
-	 
++----+ controls (Muodostetaan tekstikenttä, nappi ja alasvetovalikko)
+|     | 
+|     +-- Input.js
+|     +-- InputForce.js
+|     +-- Button.js
+|     +-- Select.js   
+|	 
++----+ images	(kuvavarasto) 

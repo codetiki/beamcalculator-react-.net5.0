@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Component, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import LineChart from "./LineChart";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -8,16 +8,6 @@ const Calculator = (props) => {
         setValues,
         forceChange
     } = props;
-
-    // const {
-    //     formData,
-    //     setFormData,
-    //     forceChange,
-    //     showResultButton,
-    //     setShowResultButton,
-    // } = props;
-
-    console.log("values Calculator", values);
 
     const X = [];
     const [pointLoads, setPointLoads] = useState([[]]);
@@ -524,6 +514,7 @@ const Calculator = (props) => {
         leikkausvoima.length = 0;
         momentti.length = 0;
 
+        // Maksimiarvojen haku taulukosta
         const maxShearforce = Math.max(...newShearforce);
         const minShearforce = Math.min(...newShearforce);
         const maxMoment = Math.max(...newMoment);
@@ -533,13 +524,16 @@ const Calculator = (props) => {
         maxmin.push(minShearforce.toFixed(2));
         maxmin.push(maxMoment.toFixed(2));
         maxmin.push(minMoment.toFixed(2));
+        // maksimiarvojen vienti
         forceChange(maxmin);
 
         setValues({ ...values, check: true });
 
+        // tukireaktiot (näkyy konsolissa)
         console.log('Pystykuorma pisteessä A on ' + reactions[0].toFixed(2) + ' [kN]');
         console.log('Pystykuorma pisteessä B on ' + reactions[2].toFixed(2) + ' [kN]');
 
+        // 
         setShearData({
             labels: X,
             datasets: [

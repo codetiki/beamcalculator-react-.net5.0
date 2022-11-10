@@ -27,7 +27,7 @@ export default function ButtonBeamForm(props) {
     } = props;
 
     const [notify, setNotify] = useState({ isOpen: false });
-    const [createBeamId, setCreateBeamId] = useState(null);
+    const [createBeamId, setCreateBeamId] = useState(null); // luodun palkin Id
     const [updateResult, setUpdateResult] = useState(false);
 
     const onCreateBeam = e => {
@@ -48,11 +48,9 @@ export default function ButtonBeamForm(props) {
             createAPIEndpoint(ENDPOINTS.BEAM).create(postData)
                 .then(response => {
                     console.log("response beam", response);
-                    console.log("response.data.beamId", response.data.beamId);
-                    // resetFormControls();
                     // otetaan luotu beamId talteen createBeamId-stateen
                     setCreateBeamId(response.data.beamId);
-                    setNotify({ isOpen: true, message: 'New beam is created.' });
+                    setNotify({ isOpen: true, message: 'Uusi palkki (beam) on luotu.' });
                 })
                 .catch(err => console.log(err));
         }
@@ -74,12 +72,11 @@ export default function ButtonBeamForm(props) {
                 "fy_StartLDL": values.fy_StartLDL1,
                 "fy_EndLDL": values.fy_EndLDL1,
                 "beamId": createBeamId
-
             }
             createAPIEndpoint(ENDPOINTS.TYPE).create(postType1)
                 .then((response) => {
                     console.log("response formType1", response);
-                    //setUpdateResult(true);
+                    setNotify({ isOpen: true, message: 'Uusi palkki (beam) ja kuormitukset (type) on luotu.' });
                 });
         }
 
@@ -98,12 +95,11 @@ export default function ButtonBeamForm(props) {
                 "fy_StartLDL": values.fy_StartLDL2,
                 "fy_EndLDL": values.fy_EndLDL2,
                 "beamId": createBeamId
-
             }
             createAPIEndpoint(ENDPOINTS.TYPE).create(postType2)
                 .then((response) => {
                     console.log("response formType1", response);
-                    // setUpdateResult(true);
+                    setNotify({ isOpen: true, message: 'Uusi palkki (beam) ja kuormitukset (type) on luotu.' });
                 });
         }
 
@@ -122,12 +118,11 @@ export default function ButtonBeamForm(props) {
                 "fy_StartLDL": values.fy_StartLDL3,
                 "fy_EndLDL": values.fy_EndLDL3,
                 "beamId": createBeamId
-
             }
             createAPIEndpoint(ENDPOINTS.TYPE).create(postType3)
                 .then((response) => {
                     console.log("response formType1", response);
-                    // setUpdateResult(true);
+                    setNotify({ isOpen: true, message: 'Uusi palkki (beam) ja kuormitukset (type) on luotu.' });
                 });
         }
 
