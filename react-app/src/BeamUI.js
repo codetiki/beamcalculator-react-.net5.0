@@ -7,7 +7,7 @@ import { Select } from "./control/Select";
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
-import ResultList from './ResultList';
+import ResultList from './components/Result/ResultList';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';

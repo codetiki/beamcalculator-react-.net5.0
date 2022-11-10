@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Component, useContext } from 'react';
-import LineChart from "./LineChart";
+import LineChart from "./components/Result/LineChart";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const BeamCalculator = (props) => {

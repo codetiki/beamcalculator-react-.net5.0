@@ -7,7 +7,6 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-
 export default function InputForce(props) {
 
     const { name, label, value, variant, onChange, error = null, ...other } = props;

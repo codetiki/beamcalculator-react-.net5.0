@@ -1,62 +1,37 @@
-import React from 'react';
-import { useForm } from '../../hook/useForm';
-import BeamForm from './BeamForm';
+import React, { useState } from 'react';
+// import { useForm } from '../../hook/useForm';
 import { Grid } from '@material-ui/core';
+import BeamForm from './BeamForm';
 import TypeForm from './TypeForm';
-import ButtonForm from './ButtonForm';
+import ButtonBeamForm from './ButtonBeamForm';
 import SelectedValuesForm from './SelectedValuesForm';
 
-// alustetaan objekti, jossa kaikki muuttujat
-const getFreshModelObject = () => ({
-    beamId: 0,
-    beamName: "",
-    beamDefinition: "",
-    span: 0,
-    a: 0,
-    b: 0,
-    vmax: 0,
-    vmin: 0,
-    mmax: 0,
-    mmin: 0,
-    types: [],
-    xp1: 0,
-    fy1: 0,
-    xm1: 0,
-    m1: 0,
-    xStartUDL1: 0,
-    xEndUDL1: 0,
-    fyUDL1: 0,
-    xStartLDL1: 0,
-    xEndLDL1: 0,
-    fy_StartLDL1: 0,
-    fy_EndLDL1: 0,
-    forceTypeId: null,
-    changed: false,
-    check: false
-})
 
-
-
-export default function Beam() {
+export default function Beam(props) {
 
     const {
-        formData,
-        setFormData,
-        createBeamId,
-        setCreateBeamId,
-        formType1,
-        setFormType1,
-        formType2,
-        setFormType2,
-        formType3,
-        setFormType3,
         values,
         setValues,
-        errors,
-        setErrors,
-        handleInputChange,
+        createBeamId,
+        setCreateBeamId,
+        results,
+        setResults,
         resetFormControls
-    } = useForm(getFreshModelObject);
+    } = props;
+
+
+    const [showResultButton, setShowResultButton] = useState(false); // Result-nappi ON/OFF
+
+
+    const handleInputChange = e => {
+        console.log("e handleInputChange", e.target);
+        const { name, value } = e.target
+        setValues({
+            ...values,
+            [name]: value
+        })
+        console.log("values handleInputChange", values);
+    }
 
     return (
         <>
@@ -64,24 +39,17 @@ export default function Beam() {
                 direction="row"
             >
                 <Grid item xs={12}>
-                    <ButtonForm
+                    <ButtonBeamForm
                         {...{
-                            formData,
-                            setFormData,
                             createBeamId,
                             setCreateBeamId,
-                            formType1,
-                            setFormType1,
-                            formType2,
-                            setFormType2,
-                            formType3,
-                            setFormType3,
                             values,
                             setValues,
-                            errors,
-                            setErrors,
+                            results,
+                            setResults,
+                            resetFormControls,
                             handleInputChange,
-                            resetFormControls
+
                         }}
                     />
                 </Grid>
@@ -90,18 +58,11 @@ export default function Beam() {
                         {...{
                             createBeamId,
                             setCreateBeamId,
-                            formType1,
-                            setFormType1,
-                            formType2,
-                            setFormType2,
-                            formType3,
-                            setFormType3,
                             values,
                             setValues,
-                            errors,
-                            setErrors,
+
                             handleInputChange,
-                            resetFormControls
+
                         }}
                     />
                 </Grid>
@@ -110,10 +71,9 @@ export default function Beam() {
                         {...{
                             values,
                             setValues,
-                            errors,
-                            setErrors,
+
                             handleInputChange,
-                            resetFormControls
+
                         }}
                     />
                 </Grid>
@@ -124,9 +84,9 @@ export default function Beam() {
                         }}
                     />
                 </Grid>
-                {/* <Grid item xl={12}>xs=5</Grid>
-                <Grid item xl={12}>xs=5</Grid> */}
             </Grid>
+
+
         </>
     )
 }

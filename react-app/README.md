@@ -11,9 +11,10 @@ Lähtötietojen syöttö ja tulokset eriytetty eri sivustolle.
 App.js sisältää vain Home.js. Home.js:ssä luodaan välilehdet.
 Home.js sisällä on  
 Tallennetut tulokset näkyvät popup-sivuna.
-### Kuva Layout:sta
+### Kuvia Layout:sta
 
-![Kuva](./src/images/Layout.png)
+![Kuva](./src/images/layout_lähtötiedot.png)
+![Kuva](./src/images/layout_tulokset.png)
 
 
 ## Käynnistys
@@ -29,5 +30,8 @@ Ohjelma käynnistyy terminaalissa komennolla `npm start`
 
 ## Vinkkejä
 `rfc` luodaan uusi functionaalinen komponentti
+
+## Laskentaesimerkki
+![Kuva](./src/images/exampleCase.png)
 
 Copyright © Timo Kivelä

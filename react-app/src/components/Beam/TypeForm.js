@@ -54,8 +54,14 @@ const useStyles = makeStyles(theme => ({
 
 export default function TypeForm(props) {
 
-    const { values, setValues, errors, setErrors,
-        handleInputChange, resetFormControls } = props;
+    const {
+        values,
+        setValues,
+        errors,
+        setErrors,
+        handleInputChange,
+        resetFormControls
+    } = props;
     const classes = useStyles()
 
     const [forceType, setForceType] = useState(0); // Valittu kuormatyyppi (forceType) 
@@ -89,9 +95,6 @@ export default function TypeForm(props) {
             setForceType(values.forceTypeId);
         }
     }, [values])
-
-    console.log('value' + values.forceTypeId + 'arvo');
-
 
     return (
         <>

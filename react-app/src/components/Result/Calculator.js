@@ -2,14 +2,22 @@ import React, { useState, useEffect, Component, useContext } from 'react';
 import LineChart from "./LineChart";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const BeamCalculator = (props) => {
+const Calculator = (props) => {
     const {
-        formData,
-        setFormData,
-        forceChange,
-        showResultButton,
-        setShowResultButton,
+        values,
+        setValues,
+        forceChange
     } = props;
+
+    // const {
+    //     formData,
+    //     setFormData,
+    //     forceChange,
+    //     showResultButton,
+    //     setShowResultButton,
+    // } = props;
+
+    console.log("values Calculator", values);
 
     const X = [];
     const [pointLoads, setPointLoads] = useState([[]]);
@@ -18,9 +26,9 @@ const BeamCalculator = (props) => {
     const [linearLoads, setLinearLoads] = useState([[]]);
 
     const reactions = [];
-    const span = parseInt(formData.span);
-    const A = parseInt(formData.A);
-    const B = parseInt(formData.B);
+    const span = parseInt(values.span);
+    const A = parseInt(values.a);
+    const B = parseInt(values.b);
     let newMoment = [];
     let newShearforce = [];
     let va, ha, vb;
@@ -113,41 +121,41 @@ const BeamCalculator = (props) => {
     });
 
     useEffect(() => {
-        setPointLoads([[parseInt(formData.xp1), 0, parseInt(formData.fy1)]]);
-        setPointMoments([[parseInt(formData.xm1), parseInt(formData.m1)]]);
-        setDistributedLoads([[parseInt(formData.xStartUDL1), parseInt(formData.xEndUDL1), parseInt(formData.fyUDL1)]]);
-        setLinearLoads([[parseInt(formData.xStartLDL1), parseInt(formData.xEndLDL1), parseInt(formData.fy_StartLDL1), parseInt(formData.fy_EndLDL1)]]);
-        setFormData({ ...formData, changed: true });
-    }, [formData.changed == false]);
+        setPointLoads([[parseInt(values.xp1), 0, parseInt(values.fy1)]]);
+        setPointMoments([[parseInt(values.xm1), parseInt(values.m1)]]);
+        setDistributedLoads([[parseInt(values.xStartUDL1), parseInt(values.xEndUDL1), parseInt(values.fyUDL1)]]);
+        setLinearLoads([[parseInt(values.xStartLDL1), parseInt(values.xEndLDL1), parseInt(values.fy_StartLDL1), parseInt(values.fy_EndLDL1)]]);
+        // setValues({ ...values, changed: true });
+    }, [values.changed == false]);
 
-    const CalculateShearForce = () => {
+    const CalculateForce = () => {
         // Lisätään toinen pistekuorma
-        if (formData.fy2) {
-            pointLoads.push([parseInt(formData.xp2), 0, parseInt(formData.fy2)]);
+        if (values.fy2) {
+            pointLoads.push([parseInt(values.xp2), 0, parseInt(values.fy2)]);
         }
-        if (formData.fy3) {
-            pointLoads.push([parseInt(formData.xp3), 0, parseInt(formData.fy3)]);
+        if (values.fy3) {
+            pointLoads.push([parseInt(values.xp3), 0, parseInt(values.fy3)]);
         }
         // Lisätään toinen pistemomentti
-        if (formData.m2) {
-            pointMoments.push([parseInt(formData.xm2), parseInt(formData.m2)]);
+        if (values.m2) {
+            pointMoments.push([parseInt(values.xm2), parseInt(values.m2)]);
         }
-        if (formData.m3) {
-            pointMoments.push([parseInt(formData.xm3), parseInt(formData.m3)]);
+        if (values.m3) {
+            pointMoments.push([parseInt(values.xm3), parseInt(values.m3)]);
         }
         // Lisätään toinen tasainen viivakuorma
-        if (formData.fyUDL2) {
-            distributedLoads.push([parseInt(formData.xStartUDL2), parseInt(formData.xEndUDL2), parseInt(formData.fyUDL2)]);
+        if (values.fyUDL2) {
+            distributedLoads.push([parseInt(values.xStartUDL2), parseInt(values.xEndUDL2), parseInt(values.fyUDL2)]);
         }
-        if (formData.fyUDL3) {
-            distributedLoads.push([parseInt(formData.xStartUDL3), parseInt(formData.xEndUDL3), parseInt(formData.fyUDL3)]);
+        if (values.fyUDL3) {
+            distributedLoads.push([parseInt(values.xStartUDL3), parseInt(values.xEndUDL3), parseInt(values.fyUDL3)]);
         }
         // Lisätään toinen lineaarinen viivakuorma
-        if (formData.fy_EndLDL2) {
-            linearLoads.push([parseInt(formData.xStartLDL2), parseInt(formData.xEndLDL2), parseInt(formData.fy_StartLDL2), parseInt(formData.fy_EndLDL2)]);
+        if (values.fy_EndLDL2) {
+            linearLoads.push([parseInt(values.xStartLDL2), parseInt(values.xEndLDL2), parseInt(values.fy_StartLDL2), parseInt(values.fy_EndLDL2)]);
         }
-        if (formData.fy_EndLDL3) {
-            linearLoads.push([parseInt(formData.xStartLDL3), parseInt(formData.xEndLDL3), parseInt(formData.fy_StartLDL3), parseInt(formData.fy_EndLDL3)]);
+        if (values.fy_EndLDL3) {
+            linearLoads.push([parseInt(values.xStartLDL3), parseInt(values.xEndLDL3), parseInt(values.fy_StartLDL3), parseInt(values.fy_EndLDL3)]);
         }
 
         const divs = 100 * span;
@@ -527,7 +535,7 @@ const BeamCalculator = (props) => {
         maxmin.push(minMoment.toFixed(2));
         forceChange(maxmin);
 
-        setFormData({ ...formData, check: true });
+        setValues({ ...values, check: true });
 
         console.log('Pystykuorma pisteessä A on ' + reactions[0].toFixed(2) + ' [kN]');
         console.log('Pystykuorma pisteessä B on ' + reactions[2].toFixed(2) + ' [kN]');
@@ -621,9 +629,16 @@ const BeamCalculator = (props) => {
 
     return (
         <div className="App">
+            <button type="button" class="btn btn-primary" onClick={CalculateForce}>Laske tulos</button>
+            {/* {
+                (showResultButton && !values.check) ?
+                    <button type="button" class="btn btn-primary" onClick={CalculateShearForce}>Laske tulos</button>
+                    :
+                    null
+            } */}
 
             {
-                formData.check ?
+                values.check ?
                     <>
                         <div style={{ width: 700 }}>
                             <LineChart chartData={momentData} />
@@ -634,14 +649,9 @@ const BeamCalculator = (props) => {
                     :
                     null
             }
-            {
-                (showResultButton && !formData.check) ?
-                    <button type="button" class="btn btn-primary" onClick={CalculateShearForce}>Laske tulos</button>
-                    :
-                    null
-            }
+
         </div>
     )
 }
 
-export default BeamCalculator;
+export default Calculator;

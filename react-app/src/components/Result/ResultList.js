@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Modal, Button, Table, Accordion, Card, Row, Col } from 'react-bootstrap';
-import { createAPIEndpoint, ENDPOINTS } from "./api/Index";
+import { createAPIEndpoint, ENDPOINTS } from "../../api/Index";
 import { BsTrash, BsPencil, BsList } from "react-icons/bs";
 
 const ResultList = (props) => {
 
     const {
-        formData,
-        setFormData,
+        values,
+        setValues,
         updateResult,
-        setUpdateResult
+        setUpdateResult,
+        results,
+        setResults
     } = props;
 
     // console.log("formData ResultList", formData.name);
