@@ -9,12 +9,15 @@ Samantyyppisiä kuormia voi olla max. 3 kpl.
 
 Lähtötietojen syöttö ja tulokset eriytetty eri sivustolle. 
 App.js sisältää vain Home.js. Home.js:ssä luodaan välilehdet.
-Home.js sisällä on  
+Home.js sisällä on Beam (lähtötiedot) ja Result (tulokset) sivut.
+Lähtötiedot sivu on eriytetty neljään toimintalohkoon: Napit, palkin pituuden ja tukien syöttö, kuormitusten syöttö ja syötetyt lähtötiedot. 
+Tulokset sivussa on Tallennetut tulokset-nappi, maksimitulokset, viivadiagrammi-lohkot.
+
 
 ### Kuvia Layout:sta ja laskennan kulku
 ![Kuva](./src/images/layout_lähtötiedot.png)
 Syötä palkin pituus ja tukien sijainnit. 
-Kuormien syötössä valitse ensin kuormatyyppi (forceType) alasvetovalikosta ja anna kuormituksen arvot. Syötetyt arvot näkyvät oikeassa laidassa. Jos arvo on 0, niin se ei tule näkyviin, kun se on jo syötetty lähtöarvoksi.
+Kuormien syötössä valitse ensin kuormatyyppi (forceType) alasvetovalikosta ja anna kuormituksen arvot. Syötetyt arvot näkyvät oikeassa laidassa. 
 Kun olet syöttänyt kaikki lähtötiedot, mene Tulokset-välilehdelle.
 ![Kuva](./src/images/layout_tulokset.png)
 Paina Laske tulos-nappia. Saat tulokseksi Taivutusmomentti- ja Leikkausvoimakäyrät (viivadiagrammi) ja niiden maksimiarvot. 
@@ -24,7 +27,9 @@ Tallennetut tulokset saat näkyviin painamalla Tulokset-välilehden Tallennetut 
 
 
 ## Käynnistys
-Ohjelma käynnistyy terminaalissa komennolla `npm start`
+Käynnistä ensin backend ohjelma (BeamAPI) Visual Studio:ssa.
+Frontend ohjelma (react-app) käynnistyy Visual Studio Code:ssa terminaalissa komennolla `npm start`.
+
 
 ## Ohjelmassa käytettyjä elementtejä
 - React
@@ -35,13 +40,13 @@ Ohjelma käynnistyy terminaalissa komennolla `npm start`
 - react-bootstrap
 
 ## Vinkkejä
-`rfc` luodaan uusi functionaalinen komponentti
+`rfc` luodaan uusi functionaalinen komponenttipohja.
 
 ## Laskentaesimerkki
 ![Kuva](./src/images/exampleCase.png)
 Kuvia Layout:sta ja laskennan kulku-kohdassa laskin tämän laskentatapauksen.
 
-## Puuttuvia asioita
+## Lisättäviä asioita
 - Syötteiden tarkistus
 - Syötteiden päivitys
 

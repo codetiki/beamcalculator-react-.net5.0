@@ -144,9 +144,9 @@ export default function ButtonBeamForm(props) {
                                     ...values,
                                     beamName: "",
                                     beamDefinition: "",
-                                    span: 0,
-                                    a: 0,
-                                    b: 0,
+                                    span: "",
+                                    a: "",
+                                    b: "",
                                     vmax: 0,
                                     vmin: 0,
                                     mmax: 0,
@@ -186,6 +186,13 @@ export default function ButtonBeamForm(props) {
                                     fy_EndLDL3: 0,
                                     forceTypeId: null,
                                 });
+                                setResults({
+                                    ...results,
+                                    "Vmax": null,
+                                    "Vmin": null,
+                                    "Mmax": null,
+                                    "Mmin": null
+                                })
                             }}
                         >Tyhjennä lähtötiedot
                         </Button>

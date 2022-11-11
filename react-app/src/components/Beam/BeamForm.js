@@ -27,7 +27,7 @@ export default function BeamForm(props) {
     return (
         <>
             <Form>
-                <Grid xs={12}>
+                <Grid item xs={12}>
                     <Item>
                         <Stack spacing={2} direction="column" justifyContent="center">
                             <h4>Syötä palkin pituus ja tukien sijainti</h4>

@@ -5,7 +5,6 @@ C:\Timon_tyot\TimonKoodaus\beamcalculator-react-.net5.0\BeamAPI\bin\Debug\net5.0
 C:\Timon_tyot\TimonKoodaus\beamcalculator-react-.net5.0\BeamAPI\bin\Debug\net5.0\BeamAPI.runtimeconfig.json
 C:\Timon_tyot\TimonKoodaus\beamcalculator-react-.net5.0\BeamAPI\bin\Debug\net5.0\BeamAPI.runtimeconfig.dev.json
 C:\Timon_tyot\TimonKoodaus\beamcalculator-react-.net5.0\BeamAPI\bin\Debug\net5.0\BeamAPI.dll
-C:\Timon_tyot\TimonKoodaus\beamcalculator-react-.net5.0\BeamAPI\bin\Debug\net5.0\ref\BeamAPI.dll
 C:\Timon_tyot\TimonKoodaus\beamcalculator-react-.net5.0\BeamAPI\bin\Debug\net5.0\BeamAPI.pdb
 C:\Timon_tyot\TimonKoodaus\beamcalculator-react-.net5.0\BeamAPI\bin\Debug\net5.0\Humanizer.dll
 C:\Timon_tyot\TimonKoodaus\beamcalculator-react-.net5.0\BeamAPI\bin\Debug\net5.0\Microsoft.AspNetCore.Razor.Language.dll
@@ -125,7 +124,6 @@ C:\Timon_tyot\TimonKoodaus\beamcalculator-react-.net5.0\BeamAPI\obj\Debug\net5.0
 C:\Timon_tyot\TimonKoodaus\beamcalculator-react-.net5.0\BeamAPI\obj\Debug\net5.0\BeamAPI.MvcApplicationPartsAssemblyInfo.cs
 C:\Timon_tyot\TimonKoodaus\beamcalculator-react-.net5.0\BeamAPI\obj\Debug\net5.0\BeamAPI.MvcApplicationPartsAssemblyInfo.cache
 C:\Timon_tyot\TimonKoodaus\beamcalculator-react-.net5.0\BeamAPI\obj\Debug\net5.0\staticwebassets\BeamAPI.StaticWebAssets.Manifest.cache
-C:\Timon_tyot\TimonKoodaus\beamcalculator-react-.net5.0\BeamAPI\obj\Debug\net5.0\staticwebassets\BeamAPI.StaticWebAssets.xml
 C:\Timon_tyot\TimonKoodaus\beamcalculator-react-.net5.0\BeamAPI\obj\Debug\net5.0\scopedcss\bundle\BeamAPI.styles.css
 C:\Timon_tyot\TimonKoodaus\beamcalculator-react-.net5.0\BeamAPI\obj\Debug\net5.0\BeamAPI.RazorTargetAssemblyInfo.cache
 C:\Timon_tyot\TimonKoodaus\beamcalculator-react-.net5.0\BeamAPI\obj\Debug\net5.0\BeamAPI.csproj.CopyComplete
@@ -133,3 +131,10 @@ C:\Timon_tyot\TimonKoodaus\beamcalculator-react-.net5.0\BeamAPI\obj\Debug\net5.0
 C:\Timon_tyot\TimonKoodaus\beamcalculator-react-.net5.0\BeamAPI\obj\Debug\net5.0\ref\BeamAPI.dll
 C:\Timon_tyot\TimonKoodaus\beamcalculator-react-.net5.0\BeamAPI\obj\Debug\net5.0\BeamAPI.pdb
 C:\Timon_tyot\TimonKoodaus\beamcalculator-react-.net5.0\BeamAPI\obj\Debug\net5.0\BeamAPI.genruntimeconfig.cache
+C:\Timon_tyot\TimonKoodaus\beamcalculator-react-.net5.0\BeamAPI\bin\Debug\net5.0\BeamAPI.StaticWebAssets.xml
+C:\Timon_tyot\TimonKoodaus\beamcalculator-react-.net5.0\BeamAPI\obj\Debug\net5.0\staticwebassets\BeamAPI.StaticWebAssets.Pack.cache
+C:\Timon_tyot\TimonKoodaus\beamcalculator-react-.net5.0\BeamAPI\obj\Debug\net5.0\staticwebassets\msbuild.BeamAPI.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Timon_tyot\TimonKoodaus\beamcalculator-react-.net5.0\BeamAPI\obj\Debug\net5.0\staticwebassets\msbuild.build.BeamAPI.props
+C:\Timon_tyot\TimonKoodaus\beamcalculator-react-.net5.0\BeamAPI\obj\Debug\net5.0\staticwebassets\msbuild.buildMultiTargeting.BeamAPI.props
+C:\Timon_tyot\TimonKoodaus\beamcalculator-react-.net5.0\BeamAPI\obj\Debug\net5.0\staticwebassets\msbuild.buildTransitive.BeamAPI.props
+C:\Timon_tyot\TimonKoodaus\beamcalculator-react-.net5.0\BeamAPI\obj\Debug\net5.0\refint\BeamAPI.dll

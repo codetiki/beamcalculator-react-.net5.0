@@ -14,9 +14,6 @@ import img1 from '../../images/pointloadWithSupportsWithBeam.png';
 import img2 from '../../images/momentloadWithSupports.png';
 import img3 from '../../images/distributedLoadWithSupport.png';
 import img4 from '../../images/linearLoadWithSupport.png';
-import { getBottomNavigationActionUtilityClass } from '@mui/material';
-
-
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -130,37 +127,7 @@ export default function TypeForm(props) {
                                                     null
                             }
                         </div>
-                        {/* {
-                            forceType === 1 ? pointLoadCount === 
-                                <div>
 
-                                    <label ><b>{values.forceTypeId}. PointLoad (PL)</b></label>
-                                    <Input
-                                        label="Xp"
-                                        name={'xp' + forceType}
-                                        value={values.xpValue}
-                                        onChange={handleInputChange}
-                                    />
-                                    <Input
-                                        label="Fy"
-                                        name={'fy' + forceType}
-                                        value={values.fyValue}
-                                        onChange={handleInputChange}
-                                    />
-                                    <label ><b>Add {values.forceTypeId + 1}. PointLoad (PL):</b></label>
-                                    <Button
-                                        variant="contained"
-                                        onClick={() => {
-                                            setPointLoadCount(values.forceTypeId + 1);
-                                            values['xp' + (forceType + 1)] = "";
-                                            values['fy' + (forceType + 1)] = "";
-                                        }}
-                                    >+
-                                    </Button>
-                                </div>
-                                :
-                                null
-                        } */}
                         {
 
                             forceType === 1 && pointLoadCount == 1 ?

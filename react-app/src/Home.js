@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Tabs, Tab, AppBar } from "@material-ui/core";
 import Beam from "./components/Beam/index";
 import Result from "./components/Result";
+import Example from "./components/Result/Example";
 
 // Luodaan välilehdet (Basic tabs [material-ui])
 const Home = () => {
@@ -22,9 +23,9 @@ const Home = () => {
         beamId: 0,
         beamName: "",
         beamDefinition: "",
-        span: 0,
-        a: 0,
-        b: 0,
+        span: "",
+        a: "",
+        b: "",
         vmax: 0,
         vmin: 0,
         mmax: 0,
@@ -63,6 +64,7 @@ const Home = () => {
                 <Tabs value={selectedTab} onChange={handleChange} aria-label="basic tabs example">
                     <Tab label="Lähtötiedot" />
                     <Tab label="Tulokset" />
+                    <Tab label="Laskentaesimerkki" />
                 </Tabs>
             </AppBar>
             {selectedTab === 0 && <Beam  {...{
@@ -78,6 +80,7 @@ const Home = () => {
                 results,
                 setResults
             }} />}
+            {selectedTab === 2 && <Example />}
         </>
     )
 };

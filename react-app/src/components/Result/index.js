@@ -41,7 +41,7 @@ export default function Result(props) {
                             <h4>Max/Min tulokset</h4>
                             <hr />
                             {
-                                values.vmax !== null ?
+                                values.span !== "" ?
                                     Object.keys(results).map(key => {
                                         return (
                                             <div key={key}>

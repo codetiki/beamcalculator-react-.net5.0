@@ -26,15 +26,13 @@ export default function SelectedValuesForm(props) {
 
     delete target.forceTypeId;
     delete target.check;
-    Object.keys(target).map(k => target[k] == "0" ? delete target[k] : target[k]);
-    Object.keys(target).map(k => target[k] == 0 ? delete target[k] : target[k]);
-    // Object.keys(target).map(k => target[k] == true ? delete target[k] : target[k]);
-    // Object.keys(target).map(k => target[k] == false ? delete target[k] : target[k]);
+    delete target.types;
+    Object.keys(target).map(k => target[k] == "" ? delete target[k] : target[k]);
     Object.keys(target).map(k => target[k] == null ? delete target[k] : target[k]);
 
     return (
         <>
-            <Grid xs={12}>
+            <Grid item xs={12}>
                 <Item>
                     <Stack spacing={2} direction="column" justifyContent="center">
                         <h4>Syötetyt lähtötiedot</h4>
