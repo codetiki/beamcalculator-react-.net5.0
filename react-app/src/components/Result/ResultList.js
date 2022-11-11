@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Grid, Paper, Button as MuiButton } from '@material-ui/core';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Modal, Button, Table, Accordion, Card, Row, Col } from 'react-bootstrap';
 import { createAPIEndpoint, ENDPOINTS } from "../../api/Index";
@@ -128,9 +129,13 @@ const ResultList = (props) => {
 
     return (
         <>
-            <Button variant="success" onClick={handleShow}><BsList />
-                Tallennetut Tulokset
-            </Button>
+            {/* palkin tallennus tietokantaan */}
+            <MuiButton
+                variant="contained"
+                onClick={handleShow}
+            ><BsList />Tallennetut Tulokset
+            </MuiButton>
+
             <Modal
                 size="xl"
                 show={show}

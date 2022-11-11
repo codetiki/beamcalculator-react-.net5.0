@@ -34,14 +34,10 @@ export default function Beam(props) {
                 <Grid item xs={12}>
                     <ButtonBeamForm
                         {...{
-                            createBeamId,
-                            setCreateBeamId,
                             values,
                             setValues,
                             results,
                             setResults,
-                            resetFormControls,
-                            handleInputChange,
                         }}
                     />
                 </Grid>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import ButtonResultForm from './ButtonResultForm';
 import Calculator from './Calculator';
 import ResultList from './ResultList';
 import { Grid, Paper, TextField, makeStyles, ButtonGroup, Button as MuiButton } from '@material-ui/core';
@@ -35,6 +36,16 @@ export default function Result(props) {
             <Grid container spacing={2}
                 direction="row"
             >
+                <Grid item xs={12}>
+                    <ButtonResultForm
+                        {...{
+                            values,
+                            setValues,
+                            results,
+                            setResults,
+                        }}
+                    />
+                </Grid>
                 <Grid item xs={3}>
                     <Item>
                         <Stack >
@@ -73,7 +84,7 @@ export default function Result(props) {
                     </Item>
                 </Grid>
             </Grid>
-            <ResultList
+            {/* <ResultList
                 {...{
                     values,
                     setValues,
@@ -82,7 +93,7 @@ export default function Result(props) {
                     results,
                     setResults
                 }}
-            />
+            /> */}
         </>
     )
 }
