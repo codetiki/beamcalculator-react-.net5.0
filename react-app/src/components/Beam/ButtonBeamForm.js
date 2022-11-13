@@ -74,6 +74,7 @@ export default function ButtonBeamForm(props) {
                                     fy_StartLDL3: 0,
                                     fy_EndLDL3: 0,
                                     forceTypeId: null,
+                                    check: false
                                 });
                                 setResults({
                                     ...results,

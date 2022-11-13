@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ResultList from './ResultList';
+import ChartForm from './ChartForm';
 import { createAPIEndpoint, ENDPOINTS } from "../../api/Index";
 import { Grid, Paper, TextField, makeStyles, ButtonGroup, Button as MuiButton } from '@material-ui/core';
 import Stack from '@mui/material/Stack';
@@ -21,7 +22,7 @@ export default function ButtonResultForm(props) {
         setValues,
         results,
         setResults,
-
+        calculateChange
     } = props;
 
     const [notify, setNotify] = useState({ isOpen: false });
@@ -142,6 +143,7 @@ export default function ButtonResultForm(props) {
                         >Tallenna tulos
                         </Button>
 
+
                         <ResultList
                             {...{
                                 values,
@@ -152,6 +154,7 @@ export default function ButtonResultForm(props) {
                                 setResults
                             }}
                         />
+                        {/* <button type="button" class="btn btn-primary" onClick={() => calculateChange}>Laske tulos</button> */}
                     </Stack>
                 </Item>
             </Grid>

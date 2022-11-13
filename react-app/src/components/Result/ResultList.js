@@ -47,11 +47,11 @@ const ResultList = (props) => {
     }
 
     // mäpätään resurssit-taulukon rivit Modal-tauluun
-    const rowsResults = resultList.map((r) => {
+    const rowsResults = resultList.map((r, x) => {
         // console.log("r rowsResults", r);
-        const rowsTypes = r.types.map((tyyppi) => {
+        const rowsTypes = r.types.map((tyyppi, index) => {
             return (
-                <tr key={tyyppi.typeId}>
+                <tr key={index}>
                     <td>{tyyppi.typeId}</td>
                     <td>{tyyppi.xp}</td>
                     <td>{tyyppi.fy}</td>
@@ -85,7 +85,7 @@ const ResultList = (props) => {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr key={r.beamId}>
+                                <tr key={x}>
                                     <td>{r.beamId}</td>
                                     <td>{r.beamName}</td>
                                     <td>{r.beamDefinition}</td>

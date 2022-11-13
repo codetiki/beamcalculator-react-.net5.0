@@ -58,6 +58,91 @@ const Home = () => {
         setValues(getFreshModelObject());
     }
 
+    // Alustetaan viivadiagrammit
+    const [shearData, setShearData] = useState({
+        labels: [],
+        datasets: [
+            {
+                label: "X-akseli",
+                data: [],
+                borderColor: 'black',
+                borderWidth: 3,
+                tension: 0.1,
+                pointRadius: 0
+            },
+            {
+                label: "V [kN]",
+                data: [],
+                backgroundColor: '#97ff97',
+                borderColor: 'green',
+                borderWidth: 1,
+                fill: true,
+                tension: 0.1,
+                pointRadius: 0
+            },
+        ],
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Leikkausvoima-käyrä',
+                }
+            },
+            maintainAspectRatio: true,
+            scales: {
+                yAxes: [
+                    {
+                        ticks: {
+                            beginAtZero: false,
+                        },
+                    },
+                ],
+            },
+        },
+    });
+
+    const [momentData, setMomentData] = useState({
+        labels: [],
+        datasets: [
+            {
+                label: "X-akseli",
+                data: [],
+                borderColor: 'black',
+                borderWidth: 3,
+                tension: 0.1,
+                pointRadius: 0
+            },
+            {
+                label: "M [kNm]",
+                data: [],
+                backgroundColor: '#ffe5e5',
+                borderColor: 'red',
+                borderWidth: 1,
+                fill: true,
+                tension: 0.1,
+                pointRadius: 0
+            },
+        ],
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Taivutusmomentti-käyrä',
+                }
+            },
+            maintainAspectRatio: true,
+            scales: {
+                yAxes: [
+                    {
+                        ticks: {
+                            beginAtZero: false,
+                        },
+                    },
+                ],
+            },
+        },
+    });
+
     return (
         <>
             <AppBar position="static">
@@ -78,7 +163,12 @@ const Home = () => {
                 values,
                 setValues,
                 results,
-                setResults
+                setResults,
+                shearData,
+                setShearData,
+                momentData,
+                setMomentData,
+
             }} />}
             {selectedTab === 2 && <Example />}
         </>

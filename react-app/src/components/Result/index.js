@@ -18,13 +18,32 @@ export default function Result(props) {
     const { values,
         setValues,
         results,
-        setResults
+        setResults,
+        shearData,
+        setShearData,
+        momentData,
+        setMomentData,
     } = props;
 
     console.log("values MaxResultForm", values);
 
-    const [updateResult, setUpdateResult] = useState(false);
+    // const [updateResult, setUpdateResult] = useState(false);
 
+    const [showResultButton, setShowResultButton] = useState(false);
+    useEffect(() => {
+        if (values.span !== "" && values.b !== "" &&
+            ((values.fy1 !== 0 && values.fy1 !== "-" && values.fy1 !== "+" && values.fy1.length !== 0) ||
+                (values.m1 !== 0 && values.m1 !== "-" && values.m1 !== "+" && values.m1.length !== 0) ||
+                (values.xEndUDL1 !== 0 && values.fyUDL1 !== 0 && values.fyUDL1 !== "-" && values.fyUDL1 !== "+" && values.fyUDL1.length !== 0) ||
+                (values.xEndLDL1 !== 0 &&
+                    ((values.fy_StartLDL1 !== 0 || values.fy_EndLDL1 !== 0) && (values.fy_StartLDL1 !== "-" && values.fy_StartLDL1 !== "+" && values.fy_StartLDL1.length !== 0) &&
+                        (values.fy_EndLDL1 !== "-" && values.fy_EndLDL1 !== "+" && values.fy_EndLDL1.length !== 0))))) {
+            setShowResultButton(true);
+        }
+        else {
+            setShowResultButton(false);
+        }
+    }, [values]);
 
     const forceChange = (newForce) => {
         console.log("newForce", newForce)
@@ -52,7 +71,7 @@ export default function Result(props) {
                             <h4>Max/Min tulokset</h4>
                             <hr />
                             {
-                                values.span !== "" ?
+                                values.check ?
                                     Object.keys(results).map(key => {
                                         return (
                                             <div key={key}>
@@ -77,7 +96,12 @@ export default function Result(props) {
                                     values,
                                     setValues,
                                     forceChange,
-
+                                    shearData,
+                                    setShearData,
+                                    momentData,
+                                    setMomentData,
+                                    showResultButton,
+                                    setShowResultButton
                                 }}
                             />
                         </Stack>

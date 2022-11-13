@@ -22,7 +22,7 @@ export default function Beam(props) {
         const { name, value } = e.target
         setValues({
             ...values,
-            [name]: value
+            [name]: value, check: false
         })
     }
 
