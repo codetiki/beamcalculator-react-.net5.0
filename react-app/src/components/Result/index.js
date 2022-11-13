@@ -25,11 +25,9 @@ export default function Result(props) {
         setMomentData,
     } = props;
 
-    console.log("values MaxResultForm", values);
-
-    // const [updateResult, setUpdateResult] = useState(false);
-
+    // luodaan state-muuttuja, jolla hallinnoidaan Laske tulos-nappia Calculator-tiedostossa 
     const [showResultButton, setShowResultButton] = useState(false);
+    // Jos lähtötiedot riittävät, voidaan showResultButton asettaa "true"
     useEffect(() => {
         if (values.span !== "" && values.b !== "" &&
             ((values.fy1 !== 0 && values.fy1 !== "-" && values.fy1 !== "+" && values.fy1.length !== 0) ||
@@ -45,6 +43,8 @@ export default function Result(props) {
         }
     }, [values]);
 
+    // tuodaan funktion kautta Calculator-tiedostosta taulukko, jossa laskennan maksimiarvot.
+    // tallennetaan ne results-stateen
     const forceChange = (newForce) => {
         console.log("newForce", newForce)
         setResults({ ...results, Vmax: newForce[0], Vmin: newForce[1], Mmax: newForce[2], Mmin: newForce[3] });

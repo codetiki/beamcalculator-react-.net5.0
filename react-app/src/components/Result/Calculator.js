@@ -35,7 +35,6 @@ export default function Calculator(props) {
     let [leikkausvoima, setLeikkausvoima] = useState([]);
     let [momentti, setMomentti] = useState([]);
 
-    const [amount, setAmount] = useState([]);
     // Luodaan tyhjät tulostustaulukot, johon summautuu lopulliset momenttien ja leikkausvoimien arvot
     let newMoment = [];
     let newShearforce = [];
@@ -415,41 +414,36 @@ export default function Calculator(props) {
             return { Shear, Moment }
         }
 
-
-        // 
+        // Summataan PL-kuormitustapausten momentti ja leikkausvoimat 
         if (nPL > 0) {
-            amount.push({ PL: nPL });
             for (let index in pointLoads) {
                 leikkausvoima.push(shear_moment_PL(index).Shear);
                 momentti.push(shear_moment_PL(index).Moment);
             }
         }
-
+        // Summataan PM-kuormitustapausten momentti ja leikkausvoimat
         if (nPM > 0) {
-            amount.push({ PM: nPM });
             for (let index in pointMoments) {
                 leikkausvoima.push(shear_moment_PM(index).Shear);
                 momentti.push(shear_moment_PM(index).Moment);
             }
         }
-
+        // Summataan UDL-kuormitustapausten momentti ja leikkausvoimat
         if (nUDL > 0) {
-            amount.push({ UDL: nUDL });
             for (let index in distributedLoads) {
                 leikkausvoima.push(shear_moment_UDL(index).Shear);
                 momentti.push(shear_moment_UDL(index).Moment);
             }
         }
-
+        // Summataan LDL-kuormitustapausten momentti ja leikkausvoimat
         if (nLDL > 0) {
-            amount.push({ LDL: nLDL });
             for (let index in linearLoads) {
                 leikkausvoima.push(shear_moment_LDL(index).Shear);
                 momentti.push(shear_moment_LDL(index).Moment);
             }
         }
 
-        // Leikkausvoima ja momentti pitää vielä yhdistää/summata 
+        // Summataan kaikkien kuormitustapausten leikkausvoimat ja momentit 
         leikkausvoima.forEach((arr) => {
             arr.forEach((value, i) => {
                 if (newShearforce[i])
@@ -467,6 +461,7 @@ export default function Calculator(props) {
             })
         });
 
+        // taulukoiden tyhjennys
         leikkausvoima.length = 0;
         momentti.length = 0;
 
@@ -480,16 +475,18 @@ export default function Calculator(props) {
         maxmin.push(minShearforce.toFixed(2));
         maxmin.push(maxMoment.toFixed(2));
         maxmin.push(minMoment.toFixed(2));
-        // maksimiarvojen vienti 
+        // maksimiarvojen vienti ylemmäksi index.js:ään
         forceChange(maxmin);
 
+        // asetetaan check-arvoksi "true" --> laskennan arvot ok.
         setValues({ ...values, check: true });
 
         // tukireaktiot (näkyy konsolissa)
         console.log('Pystykuorma pisteessä A on ' + reactions[0].toFixed(2) + ' [kN]');
         console.log('Pystykuorma pisteessä B on ' + reactions[2].toFixed(2) + ' [kN]');
         console.log('Vaakakuorma pisteessä A on ' + reactions[1].toFixed(2) + ' [kN]');
-        // 
+
+        // asetaan shearData/momentData-stateen koko viivadiagrammin tarvitsemat data-asetukset
         setShearData({
             labels: X,
             datasets: [
@@ -531,7 +528,6 @@ export default function Calculator(props) {
                 },
             },
         });
-
         setMomentData({
             labels: X,
             datasets: [
@@ -576,19 +572,17 @@ export default function Calculator(props) {
 
     }
 
-
-
-
     return (
         <div className="App">
-            {/* <button type="button" class="btn btn-primary" onClick={CalculateForce}>Laske tulos</button> */}
             {
                 (showResultButton && !values.check) ?
-                    <button type="button" class="btn btn-primary" onClick={CalculateForce}>Laske tulos</button>
+                    <>
+                        <button type="button" class="btn btn-primary" onClick={CalculateForce}>Laske tulos</button>
+                        <hr />
+                    </>
                     :
                     null
             }
-
             {
                 values.check ?
                     <>
@@ -601,9 +595,6 @@ export default function Calculator(props) {
                     :
                     <p>Ei näytettäviä tuloksia</p>
             }
-
-
-
         </div>
     )
 }
