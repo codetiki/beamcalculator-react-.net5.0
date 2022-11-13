@@ -2,43 +2,7 @@
 
 ## Frontkoodin runko
 
-+ src
-|
-+-- Home.js (navigointipalkki)
-|
-+----+ components
-|    |
-|    +--+ Beam (Lähtötiedot-välilehti)
-|    |  |
-|    |  +-- index.js (muodostetaan/kootaan Lähtötiedot-näkymä)
-|    |  +-- BeamForm.js (Palkin pituus ja tukien syöttöform)
-|    |  +-- TypeForm.js (Kuormitusten syöttöform)
-|    |  +-- SelectedValuesForm.js (Syötettyjen arvojen form)
-|    |  +-- ButtonBeamForm.js (napit form)
-|   |
-|    +--+ Result (Tulokset-välilehti)
-|       |
-|       +-- index.js (muodostetaan/kootaan Tulokset-näkymä)
-|       +-- Calculator.js (laskenta)
-|       +-- ResultList.js (Tallennetut tulokset-taulukko (Popup-ikkuna))
-|       +-- LineChart.js (viivadagrammi-funktio)
-|       +-- ButtonResultForm.js (napit form)
-|       +-- Example.js (kuva esimerkkilaskelmasta)
-|       
-+----+ layouts (Formin ja notificationin pohjat)
-|    | 
-|    +-- Form.js
-|    +-- Notification.js
-|
-+----+ controls (Tekstikenttä, nappi ja alasvetovalikon pohjat)
-|     | 
-|     +-- Input.js
-|     +-- InputForce.js
-|     +-- Button.js
-|     +-- Select.js   
-|	 
-+----+ images	(kuvavarasto) 
-
+Koodin runko näkyy `app-structure.txt` tiedostossa.
 
 Lähtötietojen syöttö ja tulokset eriytetty eri sivustolle. 
 App.js sisältää vain Home.js. Home.js:ssä luodaan välilehdet.
