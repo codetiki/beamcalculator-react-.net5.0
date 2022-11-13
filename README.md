@@ -1,61 +1,22 @@
-# beamcalculator-react-.net5.0
+# Beam Calculator App
 
-## Backend
-Target framework: net5.0
-Projektin template: ASP.NET Core Web API (REST API sovellus)
-Kehitysympäristö : Visual Studio 2019 Community
+## Kuvaus ohjelmasta
+Ohjelma piirtää 1-aukkoisen palkin taivutusmomentti- ja leikkausvoimakuviot
+ja laskee voimasuureiden maksimit.
+Palkissa voi olla päissä ulokkeet.
+Kuormitustyypit ovat pistekuorma, pistemomentti, tasainen viivakuorma ja lineaarinen viivakuorma.
+Samantyyppisiä kuormia voi olla max. 3 kpl. 
 
-Backendin pääasiallinen tarkoitus tässä projektissa on olla linkkinä frontendin (React) ja SQL Server tietokannan välillä. 
+Lähtötietojen syöttö ja tulokset eriytetty eri sivustolle. 
+Laskentaesimerkki-sivustolla löytyy ratkaistu laskentaesimerkki momentti- ja leikkausvoimakäyrineen.
 
-**Koodauksen kulku**
-Luotiin ensin luokat Beam, Type ja ForceType, joissa löytyy tietokantojen kentät ja kytkennät.
-BeamDbContext konstruktorin luonti (DbContext ja DbSet taulujen luonti).
-
-Tietokannan kytkentä (ConnectionStrings) lisätään appsettings.json tiedostoon, 
-jota kutsutaan Startup.cs tiedoston ConfigureServices metodissa/funktiossa.
-
-Tietokantataulujen luonti SQLServerille automaattisesti migraation avulla. Tarkista ensin koodi ajamalla `build`. Kirjoita Package Manager Console:ssa `Add-Migration "InitialCreate"`-käskyllä ja päivitä tietokanta `Update-Database`-käskyllä.
-
-Controllerien luonti Scaffold:n (API Controller with actions, using Entity Framework) avulla.
-Tällä tavalla saat GET/POST/PUT/DELETE-"perushaut" luotua automaattisesti. Manuaalisesti muutin BeamControllerin GetBeams-metodia, jotta saan samalla haulla kaiken tiedon Beam:sta, myös Beamiin kuuluvat Typet.
-
-Käynnistäessä ohjelman Swagger pitäisi käynnistyä, jolla voit tehdä pyyntöjä juuri luotuun tietokaan.
-
-### Error
-**Alkutilanne:**
-Beam-luokassa `public List<Type> Types { get; set; }`
-Type-luokassa `public Beam Beam { get; set; }`
-
-**Virhe**
-Code    Details
-500     Error: Internal Server Error
-
-Response body
-System.Text.Json.JsonException: A possible object cycle was detected. This can either be due to a cycle or if the object depth is larger than the maximum allowed depth of 32. Consider using ReferenceHandler.Preserve on JsonSerializerOptions to support cycles.
-
-**Korjaus**
-Beam-tauluun listautuu Type:t ja Type-tauluun listautuu Beam. Tämä aiheuttaa syklin.
-Virhe voidaan korjata lisäämällä `[JsonIgnore]`-tagi `public Beam Beam { get; set; }` yläpuolelle Type-luokkaan, jolloin Beam jätetään aina huomioimatta.
-Toinen vaihtoehto korjata tämän tyyppinen virhe on luoda apuluokka (DTO), joka palautetaan.
-
-
-
-
-## Tietokanta
-Tietokanta luotiin paikalliseen (local) SQL Serveriin
-Helpoin tapa sitä on katsella ja muokata Microsoft SQL Server Management Studio:lla.
-
-Tietokanta koostuu kolmesta taulusta.
-![Kuva](./BeamAPI/Images/Database_Diagrams.PNG)
-
-Erillisestä ForceTypes-taulusta, josta saadaan lyhenteet eri kuormatyypeille, joita laskennan alkuarvojen syötössä tarvitaan.
-![Kuva](./BeamAPI/Images/ForceType_Table.PNG)
-
-Beams- ja Types-taulut on (one to many kytköksellä) yhdistetty. Eli yhdellä palkilla (Beam) voi olla monta tyyppiä (Type).
-Beams-taulu sisältää palkin dimensiot (pituus ja tuet) ja laskennan tuloksena saadut leikkausvoima- ja taivutusmomentien maksimiarvot.
-Types-tauluun tulostuu syötetyt kuormitukset.
-
+## Asennus
+Asenna koodi koneellesi. Avaa BeamAPI-kansio backend-koodi Visual Studiossa ja käynnistä. Käynnistyksen onnistuessa Swagger käynnistyy locachost-porttiin 13897.
+Alkunäkymä:
+![Kuva](./BeamAPI/Images/layout_swagger.PNG)
+Sen jälkeen avaa react-app-kansio Visual Studio Code:ssa ja kirjoita terminaalissa `npm start`. Käynnistyksen onnistuessa käynnistyy locachost-porttiin 3000. 
+Alkunäkymä:
+![Kuva](./react-app/src/images/layout_start.png)
+Huom! Jos käynnistys ei onnistu, varmista ensin onko localhost-portit oikein.
 
 Copyright © Timo Kivelä
-
-

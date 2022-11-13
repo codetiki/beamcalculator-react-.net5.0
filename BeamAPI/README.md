@@ -1,4 +1,4 @@
-# beamcalculator-react-.net5.0
+# Beam Calculator App
 
 ## Backend
 Target framework: net5.0
@@ -46,10 +46,10 @@ Tietokanta luotiin paikalliseen (local) SQL Serveriin
 Helpoin tapa sitä on katsella ja muokata Microsoft SQL Server Management Studio:lla.
 
 Tietokanta koostuu kolmesta taulusta.
-![Kuva](./BeamAPI/Images/Database_Diagrams.PNG)
+![Kuva](./Images/Database_Diagrams.PNG)
 
 Erillisestä ForceTypes-taulusta, josta saadaan lyhenteet eri kuormatyypeille, joita laskennan alkuarvojen syötössä tarvitaan.
-![Kuva](./BeamAPI/Images/ForceType_Table.PNG)
+![Kuva](./Images/ForceType_Table.PNG)
 
 Beams- ja Types-taulut on (one to many kytköksellä) yhdistetty. Eli yhdellä palkilla (Beam) voi olla monta tyyppiä (Type).
 Beams-taulu sisältää palkin dimensiot (pituus ja tuet) ja laskennan tuloksena saadut leikkausvoima- ja taivutusmomentien maksimiarvot.

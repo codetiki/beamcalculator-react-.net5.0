@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import LineChart from "./LineChart";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import ChartForm from './ChartForm';
 
 export default function Calculator(props) {
     const {

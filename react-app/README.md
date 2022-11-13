@@ -1,17 +1,50 @@
 # Beam Calculator App
 
-## Kuvaus ohjelmasta
-Ohjelma piirtää 1-aukkoisen palkin taivutusmomentti- ja leikkausvoimakuviot
-ja laskee voimasuureiden maksimit.
-Palkissa voi olla päissä ulokkeet.
-Kuormitustyypit ovat pistekuorma, pistemomentti, tasainen viivakuorma ja lineaarinen viivakuorma.
-Samantyyppisiä kuormia voi olla max. 3 kpl. 
+## Frontkoodin runko
+
++ src
+|
++-- Home.js (navigointipalkki)
+|
++----+ components
+|    |
+|    +--+ Beam (Lähtötiedot-välilehti)
+|    |  |
+|    |  +-- index.js (muodostetaan/kootaan Lähtötiedot-näkymä)
+|    |  +-- BeamForm.js (Palkin pituus ja tukien syöttöform)
+|    |  +-- TypeForm.js (Kuormitusten syöttöform)
+|    |  +-- SelectedValuesForm.js (Syötettyjen arvojen form)
+|    |  +-- ButtonBeamForm.js (napit form)
+|   |
+|    +--+ Result (Tulokset-välilehti)
+|       |
+|       +-- index.js (muodostetaan/kootaan Tulokset-näkymä)
+|       +-- Calculator.js (laskenta)
+|       +-- ResultList.js (Tallennetut tulokset-taulukko (Popup-ikkuna))
+|       +-- LineChart.js (viivadagrammi-funktio)
+|       +-- ButtonResultForm.js (napit form)
+|       +-- Example.js (kuva esimerkkilaskelmasta)
+|       
++----+ layouts (Formin ja notificationin pohjat)
+|    | 
+|    +-- Form.js
+|    +-- Notification.js
+|
++----+ controls (Tekstikenttä, nappi ja alasvetovalikon pohjat)
+|     | 
+|     +-- Input.js
+|     +-- InputForce.js
+|     +-- Button.js
+|     +-- Select.js   
+|	 
++----+ images	(kuvavarasto) 
+
 
 Lähtötietojen syöttö ja tulokset eriytetty eri sivustolle. 
 App.js sisältää vain Home.js. Home.js:ssä luodaan välilehdet.
 Home.js sisällä on Beam (lähtötiedot) ja Result (tulokset) sivut.
-Lähtötiedot sivu on eriytetty neljään toimintalohkoon: Napit, palkin pituuden ja tukien syöttö, kuormitusten syöttö ja syötetyt lähtötiedot. 
-Tulokset sivussa on Tallennetut tulokset-nappi, maksimitulokset, viivadiagrammi-lohkot.
+Lähtötiedot sivu on eriytetty neljään toimintalohkoon: napit, palkin pituuden ja tukien syöttö, kuormitusten syöttö ja syötetyt lähtötiedot. 
+Tulokset sivussa on napit, maksimitulokset, viivadiagrammi-lohkot.
 
 
 ### Kuvia Layout:sta ja laskennan kulku
@@ -24,11 +57,6 @@ Paina Laske tulos-nappia. Saat tulokseksi Taivutusmomentti- ja Leikkausvoimakäy
 Jos haluat tallentaa nämä tietokantaan, mene uudelleen Lähtötiedot-välilehdelle ja paina Tallenna tulos-nappia. 
 ![Kuva](./src/images/layout_tallennetut_tulokset.png)
 Tallennetut tulokset saat näkyviin painamalla Tulokset-välilehden Tallennetut Tulokset-nappia. Tallennetut tulokset näkyvät popup-sivuna.
-
-
-## Käynnistys
-Käynnistä ensin backend ohjelma (BeamAPI) Visual Studio:ssa.
-Frontend ohjelma (react-app) käynnistyy Visual Studio Code:ssa terminaalissa komennolla `npm start`.
 
 
 ## Ohjelmassa käytettyjä elementtejä
